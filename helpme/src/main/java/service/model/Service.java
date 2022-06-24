@@ -40,6 +40,38 @@ public class Service {
 		return categoryNo;
 	}
 
+	public void setSno(Integer sno) {
+		this.sno = sno;
+	}
+
+	public void setWriter(Writer writer) {
+		this.writer = writer;
+	}
+
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+
+	public void setCategoryNo(Integer categoryNo) {
+		this.categoryNo = categoryNo;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public void setsCon(String sCon) {
+		this.sCon = sCon;
+	}
+
+	public void setLikeIt(int likeIt) {
+		LikeIt = likeIt;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
 	public Integer getPrice() {
 		return price;
 	}
