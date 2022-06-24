@@ -371,7 +371,7 @@
 						
 						<tr>
 							<th>* 메인이미지 등록</th>
-							<td><input type="file" name="filename[]" id="filename1"
+							<td><input type="file" name="filename1"
 								style="width: 20%;">
 								<p>* 메인 이미지는 나의 재능을 가장 잘 표현할 수
 									있는 대표 이미지로 설정합니다. (855*600 최적화 / 움직이는 gif 사용금지)</p></td>
@@ -391,19 +391,19 @@
 									</span></span></span></td>
 							<td>
 								<p class="tdLine">
-									<input type="file" name="filename[]" id="filename2"
+									<input type="file" name="filename2"
 										style="width: 97%;">
 								</p>
 								<p class="tdLine">
-									<input type="file" name="filename[]" id="filename3"
+									<input type="file" name="filename3"
 										style="width: 97%;">
 								</p>
 								<p class="tdLine">
-									<input type="file" name="filename[]" id="filename4"
+									<input type="file" name="filename4"
 										style="width: 97%;">
 								</p>
 								<p class="tdLine">
-									<input type="file" name="filename[]" id="filename5"
+									<input type="file" name="filename5"
 										style="width: 97%;">
 								</p>
 							</td>
