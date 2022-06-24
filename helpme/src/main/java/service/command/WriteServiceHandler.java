@@ -13,11 +13,11 @@ import mvc.command.CommandHandler;
 import service.service.WriteServiceService;
 
 public class WriteServiceHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/admission-apply.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/service/admission-apply.jsp";
 	private WriteServiceService writeService = new WriteServiceService();
 	
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse res) {
+	public String process(HttpServletRequest req, HttpServletResponse res) {	
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {

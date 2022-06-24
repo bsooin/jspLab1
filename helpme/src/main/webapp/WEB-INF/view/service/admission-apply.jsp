@@ -302,9 +302,7 @@
 			<img src="<%=request.getContextPath()%>/pages/images/one-line.png">
 			
 			<form method="post" enctype="multipart/form-data" action="write.do">
-				<input type="hidden" name="mode" id="mode" value="write"> <input
-					type="hidden" name="idx" value=""> <input type="hidden"
-					name="pcode" value="">
+				
 				<table width="100%" border="0" cellspacing="0" cellpadding="0"
 					class="boardInsert">
 					<colgroup>
@@ -313,20 +311,21 @@
 					</colgroup>
 					<tbody>
 						<tr>
-							<th><span class="fontRed">*</span>카테고리</th>
-							<td><select name="code1" id="code1" style="width: 150px;">
+							<th>* 카테고리</th>
+							<td><select name="categoryNo"style="width: 150px;">
 									<option value="">선택</option>
-									<option value="10">디자인/그래픽</option>
-									<option value="11">바이럴/마케팅/광고</option>
-									<option value="12">문서/서식/레포트</option>
-									<option value="13">컴퓨터/개발</option>
-									<option value="14">음악/영상</option>
-									<option value="15">생활/대행/상담</option>
-									<option value="16">노하우/여행</option>
-									<option value="17">비즈니스/창업/사업</option>
-									<option value="18">번역/외국어</option>
-									<option value="19">선물/핸드메이드/DIY</option>
-							</select> <select name="code2" id="code2" style="width: 150px;">
+									<option value="1">디자인/그래픽</option>
+									<option value="2">바이럴/마케팅/광고</option>
+									<option value="3">문서/서식/레포트</option>
+									<option value="4">컴퓨터/개발</option>
+									<option value="5">음악/영상</option>
+									<option value="6">생활/대행/상담</option>
+									<option value="7">노하우/여행</option>
+									<option value="8">비즈니스/창업/사업</option>
+									<option value="9">번역/외국어</option>
+									<option value="10">선물/핸드메이드/DIY</option>
+							</select> 
+							<!-- <select name="code2" id="code2" style="width: 150px;">
 									<option value="">선택</option>
 									<option value="1410" title="">영상제작/편집</option>
 									<option value="1411" title="">작사/작곡/MR</option>
@@ -341,25 +340,24 @@
 									<option value="1420" title="">인디음악/창작음악</option>
 									<option value="1421" title="">UCC</option>
 									<option value="1422" title="">기타</option>
-							</select></td>
+							</select></td> -->
 						</tr>
 						<tr>
-							<th><span class="fontRed">*</span>재능제목</th>
-							<td><input type="text" name="title" style="width: 80%;"
-								value="" maxlength="40"
-								placeholder="예) "><span
-								class="fontPointColor pdl_10">(40자 이내)</span></td>
+							<th>* 재능 제목</th>
+							<td><input type="text" name="sname" style="width: 80%;"
+								value="" maxlength="30"
+								placeholder="예) 나만의 재능"><span>(30자 이내)</span></td>
 						</tr>
 						<tr>
-							<th><span class="fontRed">*</span>재능가격</th>
+							<th>* 재능가격</th>
 							<td><input type="text" name="price"
-								style="width: 60px; text-align: right;" class="onlynum" value=""
-								maxlength="4">원</td>
+								style="width: 80px; text-align: right;"value=""
+								maxlength="7" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');">원</td>
 						</tr>
-						<tr>
-							<th><span class="fontRed">*</span>작업일</th>
+<!-- 						<tr>
+							<th>* 작업일</th>
 							<td><input type="text" name="period"
-								style="width: 60px; text-align: right;" class="onlynum" value=""
+								style="width: 60px; text-align: right;"value=""
 								maxlength="4"> 일<span style="color:red"> *
 									작업이 완료되는 평균 작업일을 작성합니다.</span></td>
 						</tr>
@@ -369,17 +367,17 @@
 								style="width: 60px; text-align: right;" class="onlynum" value=""
 								maxlength="5"> 원<span style="color:red">*
 									배송이 필요한 경우에만 작성합니다.</span></td>
-						</tr>
+						</tr> -->
 						
 						<tr>
-							<th><span class="fontRed">*</span>메인이미지 등록</th>
+							<th>* 메인이미지 등록</th>
 							<td><input type="file" name="filename[]" id="filename1"
-								style="width: 97%;">
-								<p class="fontPointColor pdl_10">* 메인 이미지는 나의 재능을 가장 잘 표현할 수
+								style="width: 20%;">
+								<p>* 메인 이미지는 나의 재능을 가장 잘 표현할 수
 									있는 대표 이미지로 설정합니다. (855*600 최적화 / 움직이는 gif 사용금지)</p></td>
 						</tr>
 						<tr>
-							<th><span class="fontRed">*</span>재능상세내용</th>
+							<th>* 재능상세내용</th>
 							<td><textarea name="content"
 									style="width: 97%; height: 400px;"
 									placeholder="본인의 재능을 최대한 자세하게 설명합니다. 명료하고 신뢰할 수 있는 문구로 작성해 주시고 구매자가 설명만 읽고 어떤 재능인지 쉽게 파악할 수 있도록 작성하는 것이 중요합니다."></textarea></td>
@@ -387,7 +385,7 @@
 						<tr>
 							<td><span
 								style="display: inline-block; width: 100px; font-size: 13px; font-weight: bold; color: #000;">재능상세이미지</span><br>
-							<span class="fontPointColor">메인 이미지 외 재능을<br>설명하는 부가
+							<span>메인 이미지 외 재능을<br>설명하는 부가
 									이미지를<br> 최대 4장까지 등록할 수<br> 있습니다.<span><br>
 									<span style="color: #e60111">(20MB 이미지<br>용량제한)
 									</span></span></span></td>
@@ -410,8 +408,8 @@
 								</p>
 							</td>
 						</tr>
-						<tr>
-							<th><span class="fontRed">*</span>구매자 지시사항</th>
+						<!-- <tr>
+							<th>* 구매자 지시사항</th>
 							<td><textarea name="instruction"
 									style="width: 97%; height: 200px;"
 									placeholder="구매자가 재능을 구매한 직후 구매자에게 받아야 할 정보를 입력하는 곳입니다.
@@ -421,20 +419,19 @@
 "></textarea></td>
 						</tr>
 						<tr>
-							<th><span class="fontRed">*</span>휴대폰번호</th>
+							<th>* 휴대폰번호</th>
 							<td><input type="text" name="ohp1" size="5" maxlength="4"
 								value=""> - <input type="text" name="ohp2" size="5"
 								maxlength="4" value=""> - <input type="text"
 								name="ohp3" size="5" maxlength="4" value=""> <span
 								class="fontPointColor pdl_10">* 구매자에게 연락받으실 번호를 입력해주세요.</span></td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 				
 				<div>&nbsp;</div>
 				<p>
-					<button type="submit"
-						onclick="#" style="background:white;margin: 0 0 0 50%;font-size:18px">재능등록신청</button>
+					<button type="submit" style="background:white; margin: 0 0 0 50%;font-size:18px">재능등록신청</button>
 				</p>
 			</form>
 
