@@ -328,9 +328,9 @@
 							 <img src="/helpme/upload/${service.pImage}" class="edufair-shop-image"></a>
 							</div>
 							<div class="edufair-shop-item-text">
-								<a href="read.do?no=${service.sNo}&pageNo=${servicePage.currentPage}">${servicePage.sName }</a>
-								<p>${servicePage.categoryNo}</p>
-								<b>${servicePage.price}원</b>
+								<a href="read.do?no=${service.sNo}&pageNo=${servicePage.currentPage}">${service.sName }</a>
+								<p>${service.categoryNo}</p>
+								<b>${service.price}원</b>
 							</div>
 						</div>
 					</c:forEach>

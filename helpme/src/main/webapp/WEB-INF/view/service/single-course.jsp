@@ -252,33 +252,20 @@
 		
 		<div class="edufair-course-details-1x padding-top-large">
 			<div class="container">
+			<img alt="" src="/helpme/upload/${serviceData.service.pImage}">
 				<div class="row">
 					<div class="col-md-9 sticky-body">					
 						<div class="row">							
 							<div class="col-md-12 course-details-title">								
 								<div class="col-md-4 course-teacher-details">
 									<div class="media">
-									  <div class="media-left course-teacher-image">
-											<img src="images/online-course/member6.jpg" alt="Avatar">
-									  </div>
-									  <div class="media-body">																						
-											<span>Head of the Department</span><br>
-											<a href="#">Teacher Name</a>
+									  <div class="media-body">	
+											Teacher Name
 									  </div>
 									</div>
 								</div>			
-								<div class="col-md-2 course-review">
-									<span>Reviews (20)</span><br>
-									<a href="#" class="">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</a>
-								</div>
 								<div class="col-md-6 course-details-price">
-									<strong>$600</strong>
+									<strong>${serviceData.service.price}</strong>
 								</div>								
 							</div>
 							
@@ -288,142 +275,16 @@
 																						
 							<div class="col-md-12 course-description">								
 								<ul class="nav nav-tabs nav-justified course-description-nav">
-									<li class="active"><a href="#description" data-toggle="tab"><i class="fa fa-bookmark"></i> Description</a></li>
-									<li class=""><a href="#curriculum" data-toggle="tab"><i class="fa fa-cube"></i> Curriculum</a></li>
-									<li class=""><a href="#instructors" data-toggle="tab"><i class="fa fa-user"></i> Instructors</a></li>
-									<li class=""><a href="#review" data-toggle="tab"><i class="fa fa-comments"></i> Review</a></li>
+									<li class="active"><a href="#description" data-toggle="tab"><i class="fa fa-bookmark"></i> 설명</a></li>
+									<li class=""><a href="#review" data-toggle="tab"><i class="fa fa-comments"></i>리뷰</a></li>
 								</ul>
+								
 								<div class="tab-content course-description-tab">
 									<div class="tab-pane active fade in" id="description">
 										<div class="row">
 											<div class="col-md-12 course-description-tab-left sub-content">
-												<h2>Course Description</h2>
-												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
-											
-												<h2>Certification</h2>
-												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
-												
-												<h2>Learning Outcomes</h2>
-												<div class="course-description-tab-outcomes">
-													<ul>
-														<li><i class="fa fa-check-square-o"></i> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-														<li><i class="fa fa-check-square-o"></i> Ipsum has been the industry’s standard dummy text ever since the when an unknown printer took.</li>
-														<li><i class="fa fa-check-square-o"></i> It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</li>
-														<li><i class="fa fa-check-square-o"></i> Teacher Center Professional Development Program is a collaborative program of the New York State Education Department.</li>
-														<li><i class="fa fa-check-square-o"></i> United Federation of Teachers and the New York City Department of Education.</li>
-														<li><i class="fa fa-check-square-o"></i> The program engages in a wide variety of staff development and school renewal activities.</li>
-													</ul>
-												</div>	
-												
-												<div class="course-description-tab-share">
-													
-													<ul>														
-														<li><a href="#"> <i class="fa fa-facebook"></i> </a></li>										
-														<li><a href="#"> <i class="fa fa-twitter"></i> </a></li>											
-														<li><a href="#"> <i class="fa fa-google"></i> </a></li>									
-														<li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>												
-													</ul>					
-												</div>
-												
-											
+												<p>${serviceData.service.sCon}</p>
 											</div>
-										</div>
-									</div>
-									<div class="tab-pane fade" id="curriculum">
-										
-										<div class="course-description-tab-right curriculum-tab">
-											<h2>During The Course Stareted </h2>
-											<ul>
-													<li><i class="fa fa-file-o"></i> Lecture 1.1 : What is Woocomerce <span> 25m </span></li>
-													<li><i class="fa fa-play-circle"></i> Lecture 1.2 : What is Woocomerce <span> 25m </span></li>
-													<li><i class="fa fa-file-o"></i> Lecture 1.3 : What is Woocomerce <a href="#"><i class="fa fa-eye"></i></a><span> 25m </span></li>
-													<li><i class="fa fa-play-circle"></i> Lecture 1.4 : What is Woocomerce <span> 25m </span></li>
-													<li><i class="fa fa-file-o"></i> Lecture 1.5 : What is Woocomerce <a href="#"><i class="fa fa-eye"></i></a> <span> 25m </span></li>
-													<li><i class="fa fa-play-circle"></i> Lecture 1.6 : What is Woocomerce <span> 25m </span></li>
-													<li><i class="fa fa-file-o"></i> Lecture 1.7 : What is Woocomerce <a href="#"><i class="fa fa-eye"></i></a> <span> 25m </span></li>
-													<li><i class="fa fa-play-circle"></i> Lecture 1.8 : What is Woocomerce <span> 25m </span></li>
-													<li><i class="fa fa-file-o"></i> Lecture 1.9 : What is Woocomerce <a href="#"><i class="fa fa-eye"></i></a> <span> 25m </span></li>
-													<li><i class="fa fa-play-circle"></i> Lecture 1.10 : What is Woocomerce <span> 25m </span></li>
-													<li><i class="fa fa-file-o"></i> Lecture 1.11 : What is Woocomerce <a href="#"><i class="fa fa-eye"></i></a> <span> 25m </span></li>
-													<li><i class="fa fa-play-circle"></i> Lecture 1.12 : What is Woocomerce <span> 25m </span></li>
-													
-											</ul>
-										</div>	
-										
-									</div>	
-									
-									<div class="tab-pane fade" id="instructors">
-										<div class="instructors-tab">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member1.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Alfie Petel</h4>
-													
-												</a>
-												<span>Head of the Department</span>
-												<div class="course-description-tab-share">
-													
-													<ul>														
-														<li><a href="#"> <i class="fa fa-facebook"></i> </a></li>										
-														<li><a href="#"> <i class="fa fa-twitter"></i> </a></li>											
-														<li><a href="#"> <i class="fa fa-google"></i> </a></li>									
-														<li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>												
-													</ul>					
-												</div>
-											  </div>
-											</div>
-											<p>3 If you are using navs to provide a navigation bar, be sure to add a role="navigation" to the most logical parent container of the  or wrap a  element around the whole navigation. Do not add the role to the  itself, as this would prevent it from bei the whole navigation. Do not add the role to the  itself, as this would prevent it from bei</p>
-										</div>
-										<div class="instructors-tab">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member2.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Augustine Doe</h4>
-													
-												</a>
-												<span>Lecturer of CSE</span>
-												<div class="course-description-tab-share">
-													
-													<ul>														
-														<li><a href="#"> <i class="fa fa-facebook"></i> </a></li>										
-														<li><a href="#"> <i class="fa fa-twitter"></i> </a></li>											
-														<li><a href="#"> <i class="fa fa-google"></i> </a></li>									
-														<li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>												
-													</ul>					
-												</div>
-											  </div>
-											</div>
-											<p>3 If you are using navs to provide a navigation bar, be sure to add a role="navigation" to the most logical parent container of the  or wrap a  element around the whole navigation. Do not add the role to the  itself, as this would prevent it from bei the whole navigation. Do not add the role to the  itself, as this would prevent it from bei</p>
-										</div>
-										<div class="instructors-tab">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member3.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Jhon Balthazar</h4>
-													
-												</a>
-												<span>Lecturer of CSE</span>
-												<div class="course-description-tab-share">
-													
-													<ul>														
-														<li><a href="#"> <i class="fa fa-facebook"></i> </a></li>										
-														<li><a href="#"> <i class="fa fa-twitter"></i> </a></li>											
-														<li><a href="#"> <i class="fa fa-google"></i> </a></li>									
-														<li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>											
-													</ul>					
-												</div>
-											  </div>
-											</div>
-											<p>3 If you are using navs to provide a navigation bar, be sure to add a role="navigation" to the most logical parent container of the  or wrap a  element around the whole navigation. Do not add the role to the  itself, as this would prevent it from bei</p>
 										</div>
 									</div>
 									
