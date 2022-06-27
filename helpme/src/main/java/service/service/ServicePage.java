@@ -39,11 +39,11 @@ public class ServicePage {
 		return total;
 	}
 
-	public boolean hasNoArticles() {
+	public boolean hasNoService() {
 		return total == 0;
 	}
 
-	public boolean hasArticles() {
+	public boolean hasServices() {
 		return total > 0;
 	}
 	

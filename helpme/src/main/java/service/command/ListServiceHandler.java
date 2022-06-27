@@ -21,7 +21,7 @@ public class ListServiceHandler implements CommandHandler {
 		}
 		ServicePage servicePage = listService.getServicePage(pageNo);
 		req.setAttribute("servicePage", servicePage);
-		return "/WEB-INF/bootstrap/shop.jsp";
+		return "/WEB-INF/view/service/shop.jsp";
 	}
 
 }

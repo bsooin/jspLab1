@@ -20,14 +20,13 @@ public class ServiceDao {
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement("insert into service "
-					+ "(sno, sname, categoryno, price, scon, likeit, viewcount) "
-					+ "values (?,?,?,?,?,?,0)");
-			pstmt.setInt(1, service.getSno());
-			pstmt.setString(2, service.getSname());
+					+ "(sno, sname, categoryNo, price, sCon, likeit, viewcount,pImage) " + "values (?,?,?,?,?,0,0,?)");
+			pstmt.setInt(1, service.getSNo());
+			pstmt.setString(2, service.getSName());
 			pstmt.setInt(3, service.getCategoryNo());
 			pstmt.setInt(4, service.getPrice());
 			pstmt.setString(5, service.getsCon());
-			pstmt.setInt(6, service.getLikeIt());
+			pstmt.setString(6, service.getpImage());
 			int insertedCount = pstmt.executeUpdate();
 
 			if (insertedCount > 0) {
@@ -35,14 +34,8 @@ public class ServiceDao {
 				rs = stmt.executeQuery("select last_insert_sno() from service");
 				if (rs.next()) {
 					Integer newNo = rs.getInt(1);
-					return new Service(newNo,
-							service.getWriter(),
-							service.getSname(),
-							service.getCategoryNo(),
-							service.getPrice(),
-							service.getsCon(),
-							service.getLikeIt(),
-							0);
+					return new Service(newNo, service.getSName(), service.getCategoryNo(), service.getPrice(),
+							service.getsCon(), service.getLikeIt(), 0, service.getpImage(), service.getWriter());
 				}
 			}
 			return null;
@@ -73,8 +66,7 @@ public class ServiceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from service " +
-					"order by service_sno desc limit ?, ?");
+			pstmt = conn.prepareStatement("select * from service " + "order by service_sno desc limit ?, ?");
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -91,23 +83,23 @@ public class ServiceDao {
 
 	private Service convertService(ResultSet rs) throws SQLException {
 		return new Service(rs.getInt("service_sno"),
-				new Writer(
-						rs.getString("writer_id"),
-						rs.getString("writer_name")),
 				rs.getString("sname"),
 				rs.getInt("category"),
 				rs.getInt("price"),
 				rs.getString("scon"),
 				rs.getInt("likeit"),
-				rs.getInt("viewcount"));
+				rs.getInt("viewcount"),
+				rs.getString("pImage"),
+				new Writer(
+				rs.getString("writer_id"),
+						rs.getString("writer_name")));
 	}
 
 	public Service selectById(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement(
-					"select * from service where service_sno = ?");
+			pstmt = conn.prepareStatement("select * from service where service_sno = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			Service service = null;
@@ -120,32 +112,26 @@ public class ServiceDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	
+
 	public void increaseViewcount(Connection conn, int no) throws SQLException {
-		try (PreparedStatement pstmt = 
-				conn.prepareStatement(
-						"update service set viewcount = viewcount + 1 "+
-						"where service_sno = ?")) {
+		try (PreparedStatement pstmt = conn
+				.prepareStatement("update service set viewcount = viewcount + 1 " + "where service_sno = ?")) {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
 		}
 	}
-	
+
 	public int update(Connection conn, int no, String title) throws SQLException {
-		try (PreparedStatement pstmt = 
-				conn.prepareStatement(
-						"update service set sname = ?"+
-						"where service_sno = ?")) {
+		try (PreparedStatement pstmt = conn
+				.prepareStatement("update service set sname = ?" + "where service_sno = ?")) {
 			pstmt.setString(1, title);
 			pstmt.setInt(2, no);
 			return pstmt.executeUpdate();
 		}
 	}
-	
+
 	public int delete(Connection conn, int no) throws SQLException {
-		try (PreparedStatement pstmt = 
-				conn.prepareStatement(
-						"delete from service where service_sno = ?")) {
+		try (PreparedStatement pstmt = conn.prepareStatement("delete from service where service_sno = ?")) {
 			pstmt.setInt(1, no);
 			return pstmt.executeUpdate();
 		}

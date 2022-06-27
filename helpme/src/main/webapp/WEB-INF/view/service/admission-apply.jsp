@@ -378,11 +378,11 @@
 						</tr>
 						<tr>
 							<th>* 재능상세내용</th>
-							<td><textarea name="content"
+							<td><textarea name="sCon"
 									style="width: 97%; height: 400px;"
 									placeholder="본인의 재능을 최대한 자세하게 설명합니다. 명료하고 신뢰할 수 있는 문구로 작성해 주시고 구매자가 설명만 읽고 어떤 재능인지 쉽게 파악할 수 있도록 작성하는 것이 중요합니다."></textarea></td>
 						</tr>
-						<tr>
+					<!-- 	<tr>
 							<td><span
 								style="display: inline-block; width: 100px; font-size: 13px; font-weight: bold; color: #000;">재능상세이미지</span><br>
 							<span>메인 이미지 외 재능을<br>설명하는 부가
@@ -407,7 +407,7 @@
 										style="width: 97%;">
 								</p>
 							</td>
-						</tr>
+						</tr> -->
 						<!-- <tr>
 							<th>* 구매자 지시사항</th>
 							<td><textarea name="instruction"

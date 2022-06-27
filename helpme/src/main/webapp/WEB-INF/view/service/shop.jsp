@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ include file="../include/header.jspf" %>
   <body>
   
@@ -300,9 +303,6 @@
 
 					<div class="row">
 						<div class="padding-top-large">
-							<div class="col-md-9 pull-left">
-								Showing 1–12 of 24 results
-							</div>
 							<div class="col-md-3 shop-category">
 							  <form>
 								<div class="form-group">						      
@@ -320,144 +320,51 @@
 					</div>
 
 					<div class="row padding-top-middle">
+					
+					<c:forEach var="service" items="${servicePage.content}">
 						<div class="col-md-3">
 							<div class="edufair-shop-container">
-							  <img src="images/shop/shop-1.jpg" alt="Avatar" class="edufair-shop-image">
-							  <div class="edufair-shop-middle">
-								<div class="edufair-shop-text"><a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart </a></div>
-							  </div>
+							 <a href="read.do?no=${service.sNo}&pageNo=${servicePage.currentPage}">
+							 <img src="/helpme/upload/${service.pImage}" class="edufair-shop-image"></a>
 							</div>
-							<div class="edufair-onsale"> Out of stock </div>
 							<div class="edufair-shop-item-text">
-								<a href="#">Boxing Gloves</a>
-								<p>Fashion</p>
-								<del>$200</del> &nbsp; <b>$150</b>
+								<a href="read.do?no=${service.sNo}&pageNo=${servicePage.currentPage}">${servicePage.sName }</a>
+								<p>${servicePage.categoryNo}</p>
+								<b>${servicePage.price}원</b>
 							</div>
 						</div>
-						<div class="col-md-3">
-							<div class="edufair-shop-container">
-							  <img src="images/shop/shop-2.jpg" alt="Avatar" class="edufair-shop-image">
-							  <div class="edufair-shop-middle">
-								<div class="edufair-shop-text"><a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart </a></div>
-							  </div>							  
-							</div>
-							<div class="edufair-shop-item-text">
-								<a href="#">Boxing Gloves</a>
-								<p>Fashion</p>
-								<b>$150</b>
-							</div>
+					</c:forEach>
 
-						</div>
-						<div class="col-md-3">
-							<div class="edufair-shop-container">
-							  <img src="images/shop/shop-3.jpg" alt="Avatar" class="edufair-shop-image">
-							  <div class="edufair-shop-middle">
-								<div class="edufair-shop-text"><a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart </a></div>
-							  </div>
-							  <div class="edufair-onsale"> Sale </div>
-							</div>
-							<div class="edufair-shop-item-text">
-								<a href="#">Boxing Gloves</a>
-								<p>Fashion</p>
-								<del>$200</del> &nbsp; <b>$150</b>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="edufair-shop-container">
-							  <img src="images/shop/shop-4.jpg" alt="Avatar" class="edufair-shop-image">
-							  <div class="edufair-shop-middle">
-								<div class="edufair-shop-text"><a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart </a></div>
-							  </div>
-							</div>
-							<div class="edufair-shop-item-text">
-								<a href="#">Boxing Gloves</a>
-								<p>Fashion</p>
-								<del>$200</del> &nbsp; <b>$150</b>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="edufair-shop-container">
-							  <img src="images/shop/shop-5.jpg" alt="Avatar" class="edufair-shop-image">
-							  <div class="edufair-shop-middle">
-								<div class="edufair-shop-text"><a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart </a></div>
-							  </div>
-							</div>
-							<div class="edufair-onsale"> Out of stock </div>
-							<div class="edufair-shop-item-text">
-								<a href="#">Boxing Gloves</a>
-								<p>Fashion</p>
-								<del>$200</del> &nbsp; <b>$150</b>
-							</div>
-						</div>								
-						<div class="col-md-3">
-							<div class="edufair-shop-container">
-							  <img src="images/shop/shop-6.jpg" alt="Avatar" class="edufair-shop-image">
-							  <div class="edufair-shop-middle">
-								<div class="edufair-shop-text"><a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart </a></div>
-							  </div>
-							  <div class="edufair-onsale"> Sale </div>
-							</div>
-							<div class="edufair-shop-item-text">
-								<a href="#">Boxing Gloves</a>
-								<p>Fashion</p>
-								<del>$200</del> &nbsp; <b>$150</b>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="edufair-shop-container">
-							  <img src="images/shop/shop-7.jpg" alt="Avatar" class="edufair-shop-image">
-							  <div class="edufair-shop-middle">
-								<div class="edufair-shop-text"><a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart </a></div>
-							  </div>
-							</div>
-							<div class="edufair-shop-item-text">
-								<a href="#">Boxing Gloves</a>
-								<p>Fashion</p>
-								<del>$200</del> &nbsp; <b>$150</b>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="edufair-shop-container">
-							  <img src="images/shop/shop-8.jpg" alt="Avatar" class="edufair-shop-image">
-							  <div class="edufair-shop-middle">
-								<div class="edufair-shop-text"><a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart </a></div>
-							  </div>
-							</div>
-							<div class="edufair-shop-item-text">
-								<a href="#">Boxing Gloves</a>
-								<p>Fashion</p>
-								<del>$200</del> &nbsp; <b>$150</b>
-							</div>
-						</div>
 					</div>
 
 
-					<div class="row">
+						<div class="row">
 						<div class="col-md-12">
 							<div class="text-center padding-top-large">
 								<nav class="course-pagination" aria-label="Page navigation">
-								  <ul class="pagination edufair-pagination">
-									<li>
-									  <a href="#" aria-label="Previous">
-										<i class="fa fa-angle-left"></i>
-									  </a>
-									</li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li>
-									  <a href="#" aria-label="Next">
-										<i class="fa fa-angle-right"></i>
-									  </a>
-									</li>
-								  </ul>
+								  
+								  <c:if test="${servicePage.hasServices()}">
+	<ul class="pagination edufair-pagination">
+			<c:if test="${servicePage.startPage > 5}">
+			<li><a href="list.do?pageNo=${servicePage.startPage - 5}" class="fa fa-angle-left">[이전]</a></li>
+			</c:if>
+			
+			<c:forEach var="pNo" 
+					   begin="${servicePage.startPage}" 
+					   end="${servicePage.endPage}">
+			<li><a href="list.do?pageNo=${pNo}">[${pNo}]</a></li>
+			</c:forEach>
+			
+			<c:if test="${servicePage.endPage < servicePage.totalPages}">
+			<li><a href="list.do?pageNo=${servicePage.startPage + 5}" class="fa fa-angle-right" >[다음]</a></li>
+			</c:if>
+	</ul>
+</c:if>
+								  
 								</nav>
 							</div>
 						</div>
-					</div>					
-
+					</div>
 					
 				</div>
 			</div>
@@ -466,3 +373,23 @@
 		
 	
 	<%@ include file="../include/footer.jspf" %>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

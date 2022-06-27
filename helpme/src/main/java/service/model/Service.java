@@ -2,90 +2,102 @@ package service.model;
 
 public class Service {
 
-	private Integer sno;
-	private Writer writer;
-	private String sname;
+	private Integer sNo;
+	private String sName;
 	private Integer categoryNo;
 	private Integer price;
 	private String sCon;
-	private int LikeIt;
+	private int likeIt;
 	private int viewCount;
-
-	public Service(Integer sno, Writer writer, String sname, Integer categoryNo, Integer price, String sCon, int likeIt,
-			int viewCount) {
+	private String pImage;
+	private Writer writer;
+	
+	public Service(Integer sNo, String sName, Integer categoryNo, Integer price, String sCon, int likeIt, int viewCount,
+			String pImage, Writer writer) {
 		super();
-		this.sno = sno;
-		this.writer = writer;
-		this.sname = sname;
+		this.sNo = sNo;
+		this.sName = sName;
 		this.categoryNo = categoryNo;
 		this.price = price;
 		this.sCon = sCon;
-		this.LikeIt = likeIt;
+		this.likeIt = likeIt;
 		this.viewCount = viewCount;
+		this.pImage = pImage;
+		this.writer = writer;
 	}
 
-	public Integer getSno() {
-		return sno;
+	public Integer getSNo() {
+		return sNo;
 	}
 
-	public Writer getWriter() {
-		return writer;
+	public void setSNo(Integer SNo) {
+		this.sNo = SNo;
 	}
 
-	public String getSname() {
-		return sname;
+	public String getSName() {
+		return sName;
+	}
+
+	public void setSName(String sName) {
+		this.sName = sName;
 	}
 
 	public Integer getCategoryNo() {
 		return categoryNo;
 	}
 
-	public void setSno(Integer sno) {
-		this.sno = sno;
-	}
-
-	public void setWriter(Writer writer) {
-		this.writer = writer;
-	}
-
-	public void setSname(String sname) {
-		this.sname = sname;
-	}
-
 	public void setCategoryNo(Integer categoryNo) {
 		this.categoryNo = categoryNo;
-	}
-
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-	public void setsCon(String sCon) {
-		this.sCon = sCon;
-	}
-
-	public void setLikeIt(int likeIt) {
-		LikeIt = likeIt;
-	}
-
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
 	}
 
 	public Integer getPrice() {
 		return price;
 	}
 
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
 	public String getsCon() {
 		return sCon;
 	}
 
+	public void setsCon(String sCon) {
+		this.sCon = sCon;
+	}
+
 	public int getLikeIt() {
-		return LikeIt;
+		return likeIt;
+	}
+
+	public void setLikeIt(int likeIt) {
+		this.likeIt = likeIt;
 	}
 
 	public int getViewCount() {
 		return viewCount;
 	}
 
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
+	public String getpImage() {
+		return pImage;
+	}
+
+	public void setpImage(String pImage) {
+		this.pImage = pImage;
+	}
+
+	public Writer getWriter() {
+		return writer;
+	}
+
+	public void setWriter(Writer writer) {
+		this.writer = writer;
+	}
+	
+	
+	
 }
