@@ -272,9 +272,19 @@
 								</div>								
 							</div>
 							
-							<div class="col-md-12 course-banner">
-								<img src="images/slide/slide-9.jpg" alt="Avatar">
-							</div>
+								<input type="button" value="서비스 구매" style="background-color:white;width:100%;height:30px;border-color:green;font-size:15px;margin-bottom:20px"
+								onclick="">
+								<script>
+								function checkPurchase(){
+									var chk = confirm('구매 신청하시겠습니까?');
+									if(chk){
+										location.href='service/buy.do?sNo=${serviceData.service.sNo}&price=${serviceData.service.price}';
+										alert('신청 완료');
+									}else{
+										
+									}
+								}
+								</script>
 																						
 							<div class="col-md-12 course-description">								
 								<ul class="nav nav-tabs nav-justified course-description-nav">
@@ -349,7 +359,7 @@
 												   </div>										
 												</div>
 											</div>
-
+											
 											<c:forEach var="review" items="${reviewPage.content}">
 											<div class="instructors-tab">
 												<div class="media">
@@ -357,7 +367,7 @@
 														<h4 class="media-heading">${review.writer.id}</h4>													
 												  </div>
 												</div>
-												<p><h2>${review.rTitle}</h2></p>
+												<p></p><h2>${review.rTitle}</h2></p>
 												<p>${review.rContent}</p>
 												
 												<c:if test="${member.id == review.writer.id}">
@@ -395,6 +405,12 @@
 							</div>
 						</div>
 					</div>
+					
+							<c:if test="${member.id==completeData.userId and serviceData.Service.sNo == completeData.sNo} ">
+								<a href="review/write.do?no=${service.sNo}"style="font-size:10px;background:white;color:black">리뷰 등록</a>
+								
+							</c:if>	
+									
 											
 										</div>
 									</div>
@@ -424,10 +440,12 @@
 			</div>
 		</div>
 		
+		<c:if test="${member.id == service.writer.id}">
 		<p style="text-align:center">
 		<a href="service/modify.do?no=${service.sNo}"style="font-size:10px;background:white;color:black">서비스 수정</a>
 		<a href="service/delete.do?no=${service.sNo}"style="font-size:10px;background:white;color:black">서비스 삭제</a>
 		</p>
+		</c:if>
 	<!-- 
 		<!-- Start edufair related course -->
 		<div class="edufair-related-course-1x">
