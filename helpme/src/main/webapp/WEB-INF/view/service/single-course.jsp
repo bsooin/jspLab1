@@ -425,8 +425,8 @@
 		</div>
 		
 		<p style="text-align:center">
-		<a href="review/modify.do?no=${review.rBoardId}"style="font-size:10px;background:white;color:black">서비스 수정</a>
-		<a href="review/delete.do?no=${review.rBoardId}"style="font-size:10px;background:white;color:black">서비스 삭제</a>
+		<a href="service/modify.do?no=${service.sNo}"style="font-size:10px;background:white;color:black">서비스 수정</a>
+		<a href="service/delete.do?no=${service.sNo}"style="font-size:10px;background:white;color:black">서비스 삭제</a>
 		</p>
 	<!-- 
 		<!-- Start edufair related course -->
