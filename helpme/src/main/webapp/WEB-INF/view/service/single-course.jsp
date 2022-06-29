@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ include file="../include/header.jspf" %>
   <body class="single-course-1x">
   
@@ -296,13 +299,11 @@
 										
 												<div class="media">
 												  <div class="media-left">
-													<strong>5</strong>
+													<strong>${reviewPage.starAvg}</strong>
 													<span>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
+														<c:forEach var="i" begin="1" end="${reviewPage.starAvg}" step="1">
+															<i class="fa fa-star"></i>
+														</c:forEach>
 													</span>
 												  </div>
 												  <div class="media-body">
@@ -310,8 +311,7 @@
 															<div class="single-progress-bar">
 																<label>5 stars</label>
 																<div class="progress">
-																  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
-																	<span class="sr-only">60% Complete</span>
+																  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${reviewPage.fiveStar}%;">
 																  </div>
 																</div>
 																
@@ -319,32 +319,28 @@
 															<div class="single-progress-bar">
 																<label>4 stars</label>
 																<div class="progress">
-																  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-																	<span class="sr-only">60% Complete</span>
+																  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${reviewPage.fourStar}%;">
 																  </div>
 																</div>
 															</div>
 															<div class="single-progress-bar">
 																<label>3 stars</label>
 																<div class="progress">
-																  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-																	<span class="sr-only">60% Complete</span>
+																  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${reviewPage.threeStar}%;">
 																  </div>
 																</div>
 															</div>
 															<div class="single-progress-bar">
 																<label>2 stars</label>
 																<div class="progress">
-																  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">
-																	<span class="sr-only">60% Complete</span>
+																  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${reviewPage.twoStar}%;">
 																  </div>
 																</div>
 															</div>
 															<div class="single-progress-bar">
 																<label>1 stars</label>
 																<div class="progress">
-																  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-																	<span class="sr-only">60% Complete</span>
+																  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: ${reviewPage.oneStar}%;">
 																  </div>
 																</div>
 															</div>
@@ -354,51 +350,51 @@
 												</div>
 											</div>
 
-
+											<c:forEach var="review" items="${reviewPage.content}">
 											<div class="instructors-tab">
 												<div class="media">
-												  <div class="media-left">
-													<img src="images/online-course/member1.jpg" alt="Avatar">
-												  </div>
 												  <div class="media-body">
-													<a href="#" class="">
-														<h4 class="media-heading">Alfie Petel</h4>														
-													</a>
-
-													<span>CSE Department</span><br/>
-													<strong>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</strong>
+														<h4 class="media-heading">${review.writer.id}</h4>													
 												  </div>
 												</div>
-												<p>3 If you are using navs to provide a navigation bar, be sure to add a role="navigation" to the most logical parent container of the  or wrap a  element around the whole navigation. Do not add the role to the  itself, as this would prevent it from bei</p>
+												<p><h2>${review.rTitle}</h2></p>
+												<p>${review.rContent}</p>
+												
+												<c:if test="${member.id == review.writer.id}">
+													<p style="text-align:right">
+														<a href="review/modify.do?no=${review.rBoardId}"style="font-size:10px;background:white;color:black">리뷰 수정</a>
+														<a href="review/delete.do?no=${review.rBoardId}"style="font-size:10px;background:white;color:black">리뷰 삭제</a>
+													</p>
+												</c:if>
 											</div>
-											<div class="instructors-tab">
-												<div class="media">
-												  <div class="media-left">
-													<img src="images/online-course/member2.jpg" alt="Avatar">
-												  </div>
-												  <div class="media-body">
-													<a href="#" class="">
-														<h4 class="media-heading">Augustine Doe</h4>														
-													</a>
-
-													<span>ECE Department</span><br/>
-													<strong>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</strong>
-												  </div>
-												</div>
-												<p>3 If you are using navs to provide a navigation bar, be sure to add a role="navigation" to the most logical parent container of the  or wrap a  element around the whole navigation. Do not add the role to the  itself, as this would prevent it from bei</p>
-											</div>											
+											</c:forEach>
+											
+											<div class="row">
+						<div class="col-md-12">
+							<div class="text-center padding-top-large">
+								<nav class="course-pagination" aria-label="Page navigation">
+								  <c:if test="${reviewPage.hasReviews()}">
+	<ul class="pagination edufair-pagination">
+			<c:if test="${reviewPage.startPage > 5}">
+			<li><a href="list.do?pageNo=${reviewPage.startPage - 5}" class="fa fa-angle-left">[이전]</a></li>
+			</c:if>
+			
+			<c:forEach var="pNo" 
+					   begin="${reviewPage.startPage}" 
+					   end="${reviewPage.endPage}">
+			<li><a href="list.do?pageNo=${pNo}">[${pNo}]</a></li>
+			</c:forEach>
+			
+			<c:if test="${reviewPage.endPage < reviewPage.totalPages}">
+			<li><a href="list.do?pageNo=${reviewPage.startPage + 5}" class="fa fa-angle-right" >[다음]</a></li>
+			</c:if>
+	</ul>
+</c:if>
+								  
+								</nav>
+							</div>
+						</div>
+					</div>
 											
 										</div>
 									</div>
@@ -427,8 +423,12 @@
 				</div>
 			</div>
 		</div>
-
-	
+		
+		<p style="text-align:center">
+		<a href="review/modify.do?no=${review.rBoardId}"style="font-size:10px;background:white;color:black">서비스 수정</a>
+		<a href="review/delete.do?no=${review.rBoardId}"style="font-size:10px;background:white;color:black">서비스 삭제</a>
+		</p>
+	<!-- 
 		<!-- Start edufair related course -->
 		<div class="edufair-related-course-1x">
 			<div class="container">			
@@ -436,7 +436,7 @@
 					<div class="col-md-12">
 						<h2 class="edufair-main-title">Related Courses</h2>
 						
-						<!-- Controls -->
+						Controls
 						<a class="left carousel-control  edufair-course-controll-1x" href="#course-carousel" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
 						<a class="right carousel-control edufair-course-controll-1x" href="#course-carousel" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
 				
@@ -444,7 +444,7 @@
 				</div>
 				
 				<div id="course-carousel" class="carousel slide carousel-fade" data-ride="carousel">
-					<!-- Wrapper for slides -->
+					Wrapper for slides
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
 							<div class="row">					
@@ -719,6 +719,6 @@
 				</div>		
 			</div>
 		</div>
-		<!-- End edufair related course-->		
+		End edufair related course		 -->
 
 			<%@ include file="../include/footer.jspf" %>

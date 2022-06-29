@@ -370,7 +370,9 @@
 			</div>
 		</div>
 		<!-- End Shop -->		
-		
+		<p style="text-align:center">
+		<a href="service/write.do"style="font-size:10px;background:white;color:black">서비스 작성</a>
+		</p>
 	
 	<%@ include file="../include/footer.jspf" %>
 	

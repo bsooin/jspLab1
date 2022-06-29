@@ -39,7 +39,7 @@ public class WriteServiceHandler implements CommandHandler {
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 
-		User user = (User)req.getSession(false).getAttribute("authUser");
+		User user = (User)req.getSession(false).getAttribute("member");
 		
 		if (req.getParameter("sName") == null || req.getParameter("sName").trim().isEmpty()) {
 			errors.put("sName", Boolean.TRUE);
@@ -55,7 +55,7 @@ public class WriteServiceHandler implements CommandHandler {
 		
 		int size = 10 * 1024 * 1024;
 		
-		int sNo, categoryNo,price;
+		int sNo=0, categoryNo,price;
 		String sName,sCon,pImage;
 		
 		Service service = null;
@@ -65,8 +65,8 @@ public class WriteServiceHandler implements CommandHandler {
 		MultipartRequest multi = new MultipartRequest(req, uploadPath, size, "utf-8",
 				new DefaultFileRenamePolicy());
 
-		sNo = Integer.parseInt(multi.getParameter("sno"));
-		sName = multi.getParameter("sname");
+		
+		sName = multi.getParameter("sName");
 		categoryNo = Integer.parseInt(multi.getParameter("categoryNo"));
 		price = Integer.parseInt(multi.getParameter("price"));
 		sCon = multi.getParameter("sCon");
