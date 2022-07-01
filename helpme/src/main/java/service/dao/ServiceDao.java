@@ -10,7 +10,7 @@ import java.util.List;
 
 import service.model.Service;
 import service.model.Writer;
-import service.service.ModifyRequest;
+import service.service.ModifyServiceRequest;
 import jdbc.JdbcUtil;
 
 public class ServiceDao {
@@ -122,7 +122,7 @@ public class ServiceDao {
 		}
 	}
 
-	public int update(Connection conn, ModifyRequest modReq) throws SQLException {
+	public int update(Connection conn, ModifyServiceRequest modReq) throws SQLException {
 		try (PreparedStatement pstmt = conn
 				.prepareStatement("update service set sname = ?, categoryno = ?, price = ?, scon = ?, pimage = ?" + "where service_sno = ?")) {
 			pstmt.setString(1, modReq.getsName());

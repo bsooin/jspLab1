@@ -407,7 +407,7 @@
 					</div>
 					
 							<c:if test="${member.id==completeData.userId and serviceData.Service.sNo == completeData.sNo} ">
-								<a href="review/write.do?no=${service.sNo}"style="font-size:10px;background:white;color:black">리뷰 등록</a>
+								<a href="review/write.do?sNo=${ServiceData.service.sNo}"style="font-size:10px;background:white;color:black">리뷰 등록</a>
 								
 							</c:if>	
 									
