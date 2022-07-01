@@ -36,26 +36,14 @@ public class WriteServiceHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
-		Map<String, Boolean> errors = new HashMap<>();
-		req.setAttribute("errors", errors);
 
 		User user = (User)req.getSession(false).getAttribute("member");
 		
-		if (req.getParameter("sName") == null || req.getParameter("sName").trim().isEmpty()) {
-			errors.put("sName", Boolean.TRUE);
-		}
-		
-		
-		if (!errors.isEmpty()) {
-			return FORM_VIEW;
-		}
-		
 		String uploadPath = req.getRealPath("upload");
-		System.out.println("path=" + uploadPath);
 		
 		int size = 10 * 1024 * 1024;
 		
-		int sNo=0, categoryNo,price;
+		int categoryNo,price;
 		String sName,sCon,pImage;
 		
 		Service service = null;
@@ -72,7 +60,7 @@ public class WriteServiceHandler implements CommandHandler {
 		sCon = multi.getParameter("sCon");
 		pImage = multi.getFilesystemName("pImage");
 
-		service = new Service(sNo,sName,categoryNo,price,sCon,0,0,pImage,writer);
+		service = new Service(0,sName,categoryNo,price,sCon,0,0,pImage,writer);
 		
 		}catch (Exception e) {
 			e.printStackTrace();

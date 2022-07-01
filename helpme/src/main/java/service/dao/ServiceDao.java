@@ -20,19 +20,18 @@ public class ServiceDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("insert into service "
-					+ "(sno, sname, categoryNo, price, sCon, likeit, viewcount,pImage) " + "values (?,?,?,?,?,0,0,?)");
-			pstmt.setInt(1, service.getSNo());
-			pstmt.setString(2, service.getSName());
-			pstmt.setInt(3, service.getCategoryNo());
-			pstmt.setInt(4, service.getPrice());
-			pstmt.setString(5, service.getsCon());
-			pstmt.setString(6, service.getpImage());
+			pstmt = conn.prepareStatement("insert into svc "
+					+ "(sno, sname, categoryNo, price, sCon, likeit, viewcount,pImage,scount) " + "values (svc_seq.nextval,?,?,?,?,0,0,?,0)");
+			pstmt.setString(1, service.getSName());
+			pstmt.setInt(2, service.getCategoryNo());
+			pstmt.setInt(3, service.getPrice());
+			pstmt.setString(4, service.getsCon());
+			pstmt.setString(5, service.getpImage());
 			int insertedCount = pstmt.executeUpdate();
 
 			if (insertedCount > 0) {
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery("select last_insert_sno() from service");
+				rs = stmt.executeQuery("select last_insert_sno() from svc");
 				if (rs.next()) {
 					Integer newNo = rs.getInt(1);
 					return new Service(newNo, service.getSName(), service.getCategoryNo(), service.getPrice(),
@@ -52,7 +51,7 @@ public class ServiceDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from service");
+			rs = stmt.executeQuery("select count(*) from svc");
 			if (rs.next()) {
 				return rs.getInt(1);
 			}
@@ -67,7 +66,7 @@ public class ServiceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from service " + "order by service_sno desc limit ?, ?");
+			pstmt = conn.prepareStatement("select * from svc WHERE ROWNUM BETWEEN ? AND ?");
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -83,24 +82,22 @@ public class ServiceDao {
 	}
 
 	private Service convertService(ResultSet rs) throws SQLException {
-		return new Service(rs.getInt("service_sno"),
+		return new Service(rs.getInt("sno"),
 				rs.getString("sname"),
-				rs.getInt("category"),
+				rs.getInt("categoryno"),
 				rs.getInt("price"),
 				rs.getString("scon"),
 				rs.getInt("likeit"),
 				rs.getInt("viewcount"),
 				rs.getString("pImage"),
-				new Writer(
-				rs.getString("writer_id"),
-						rs.getString("writer_name")));
+				null);
 	}
 
 	public Service selectById(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from service where service_sno = ?");
+			pstmt = conn.prepareStatement("select * from svc where svc_sno = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			Service service = null;
@@ -116,7 +113,7 @@ public class ServiceDao {
 
 	public void increaseViewcount(Connection conn, int no) throws SQLException {
 		try (PreparedStatement pstmt = conn
-				.prepareStatement("update service set viewcount = viewcount + 1 " + "where service_sno = ?")) {
+				.prepareStatement("update svc set viewcount = viewcount + 1 " + "where svc_sno = ?")) {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
 		}
@@ -124,7 +121,7 @@ public class ServiceDao {
 
 	public int update(Connection conn, ModifyServiceRequest modReq) throws SQLException {
 		try (PreparedStatement pstmt = conn
-				.prepareStatement("update service set sname = ?, categoryno = ?, price = ?, scon = ?, pimage = ?" + "where service_sno = ?")) {
+				.prepareStatement("update svc set sname = ?, categoryno = ?, price = ?, scon = ?, pimage = ?" + "where svc_sno = ?")) {
 			pstmt.setString(1, modReq.getsName());
 			pstmt.setInt(2, modReq.getCategoryNo());
 			pstmt.setInt(3, modReq.getPrice());
@@ -136,7 +133,7 @@ public class ServiceDao {
 	}
 
 	public int delete(Connection conn, int no) throws SQLException {
-		try (PreparedStatement pstmt = conn.prepareStatement("delete from service where service_sno = ?")) {
+		try (PreparedStatement pstmt = conn.prepareStatement("delete from svc where svc_sno = ?")) {
 			pstmt.setInt(1, no);
 			return pstmt.executeUpdate();
 		}

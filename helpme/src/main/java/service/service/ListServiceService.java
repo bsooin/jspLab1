@@ -11,13 +11,14 @@ import jdbc.connection.ConnectionProvider;
 public class ListServiceService {
 
 	private ServiceDao articleDao = new ServiceDao();
-	private int size = 8;
+	private int size = 7;
 
 	public ServicePage getServicePage(int pageNum) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			int total = articleDao.selectCount(conn);
+			
 			List<Service> content = articleDao.select(
-					conn, (pageNum - 1) * size, size);
+					conn, (pageNum - 1) * size, (pageNum - 1) * size+size);
 			return new ServicePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

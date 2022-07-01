@@ -324,11 +324,11 @@
 					<c:forEach var="service" items="${servicePage.content}">
 						<div class="col-md-3">
 							<div class="edufair-shop-container">
-							 <a href="read.do?no=${service.sNo}&pageNo=${servicePage.currentPage}">
+							 <a href="read.do?no=${service.getSNo()}&pageNo=${servicePage.currentPage}">
 							 <img src="/helpme/upload/${service.pImage}" class="edufair-shop-image"></a>
 							</div>
 							<div class="edufair-shop-item-text">
-								<a href="read.do?no=${service.sNo}&pageNo=${servicePage.currentPage}">${service.sName }</a>
+								<a href="read.do?no=${service.getSNo()}&pageNo=${servicePage.currentPage}">${service.getSName()}</a>
 								<p>${service.categoryNo}</p>
 								<b>${service.price}원</b>
 							</div>

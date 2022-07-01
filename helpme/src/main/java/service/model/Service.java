@@ -34,6 +34,7 @@ public class Service {
 		this.sNo = SNo;
 	}
 
+
 	public String getSName() {
 		return sName;
 	}
