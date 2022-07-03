@@ -81,7 +81,8 @@ public class ServiceDao {
 				rs.getInt("likeit"),
 				rs.getInt("viewcount"),
 				rs.getString("pImage"),
-				null);
+				new Writer("a","a"));
+		
 	}
 
 	public Service selectById(Connection conn, int no) throws SQLException {

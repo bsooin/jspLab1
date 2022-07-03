@@ -448,9 +448,9 @@
 			}
 		}
 		</script>
-		<c:if test="${member.id == serviceData.service.writer.id}">
+		<c:if test="${member.getId()== serviceData.getService().getWriter().getId()}">
 		<p style="text-align:center">
-		<button type="button" onclick="location.replace('modify.do?sno=${serviceData.service.SNo}');" style="font-size:30px;background:white;color:black">서비스 수정</button>
+		<button type="button" onclick="location.replace('modify.do?sno=${serviceData.getService().getSNo()}');" style="font-size:30px;background:white;color:black">서비스 수정</button>
 		&emsp;&emsp;&emsp;
 		<button type="button" onclick="checkDel();" style="font-size:30px;background:white;color:black">서비스 삭제</button>
 		</p>
