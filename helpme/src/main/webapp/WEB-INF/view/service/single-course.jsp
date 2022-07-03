@@ -235,7 +235,7 @@
 							<div class="carousel-caption edufair-caption edufair-single-caption">
 								<div class="edufair-slider-middle">
 									<div class="container edufair-slider-text">
-										<h2 class="fadeInLeft">Guide to Getting Certified</h2>	
+										<h2 class="fadeInLeft"></h2>	
 										<ol class="breadcrumb edufair-single-breadcrumbs">
 										  <li><a href="#">Home</a></li>
 										  <li><a href="#">HTML</a></li>
@@ -278,7 +278,7 @@
 								function checkPurchase(){
 									var chk = confirm('구매 신청하시겠습니까?');
 									if(chk){
-										location.href='service/buy.do?sNo=${serviceData.service.sNo}&price=${serviceData.service.price}';
+										location.href='service/buy.do?sNo=${serviceData.service.getsNo()}&price=${serviceData.service.price}';
 										alert('신청 완료');
 									}else{
 										
@@ -406,8 +406,10 @@
 						</div>
 					</div>
 					
-							<c:if test="${member.id==completeData.userId and serviceData.Service.sNo == completeData.sNo} ">
-								<a href="review/write.do?sNo=${ServiceData.service.sNo}"style="font-size:10px;background:white;color:black">리뷰 등록</a>
+							<c:if test="${member.getId()==completeData.getUserId() && serviceData.getService().getsNo() == completeData.getsNo()}">
+							 
+								<a href="review/write.do?sNo=${serviceData.getService().getSNo()}"style="font-size:20px;background:white;color:black">리뷰 등록</a>
+								
 								
 							</c:if>	
 									
@@ -439,304 +441,23 @@
 				</div>
 			</div>
 		</div>
-		
-		<c:if test="${member.id == service.writer.id}">
+		<script>
+		function checkDel(){
+			if(confirm("정말 삭제하시겠습니까?")){
+				location.replace('delete.do?sno=${serviceData.service.SNo}');
+			}
+		}
+		</script>
+		<c:if test="${member.id == serviceData.service.writer.id}">
 		<p style="text-align:center">
-		<a href="service/modify.do?no=${service.sNo}"style="font-size:10px;background:white;color:black">서비스 수정</a>
-		<a href="service/delete.do?no=${service.sNo}"style="font-size:10px;background:white;color:black">서비스 삭제</a>
+		<button type="button" onclick="location.replace('modify.do?sno=${serviceData.service.SNo}');" style="font-size:30px;background:white;color:black">서비스 수정</button>
+		&emsp;&emsp;&emsp;
+		<button type="button" onclick="checkDel();" style="font-size:30px;background:white;color:black">서비스 삭제</button>
 		</p>
 		</c:if>
-	<!-- 
-		<!-- Start edufair related course -->
-		<div class="edufair-related-course-1x">
-			<div class="container">			
-				<div class="row">
-					<div class="col-md-12">
-						<h2 class="edufair-main-title">Related Courses</h2>
-						
-						Controls
-						<a class="left carousel-control  edufair-course-controll-1x" href="#course-carousel" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-						<a class="right carousel-control edufair-course-controll-1x" href="#course-carousel" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
-				
-					</div>
-				</div>
-				
-				<div id="course-carousel" class="carousel slide carousel-fade" data-ride="carousel">
-					Wrapper for slides
-					<div class="carousel-inner" role="listbox">
-						<div class="item active">
-							<div class="row">					
-								<div class="col-md-3">						
-									<div class="edufair-related-course">						
-										<div class="edufair-related-course-overlay">
-										  <img src="images/online-course/online-course2.jpg" alt="Avatar" class="edufair-related-course-image">
-										  <div class="edufair-related-course-middle">
-											 
-										  </div>
-										</div>
-										
-										<div class="related-course-content">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member1.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Teacher Name</h4>
-													<span>Head of the Department</span>
-												</a>
-											  </div>
-											</div>	
-											<a href="#" class="">
-												<h3>Docker system for the Absolute Beginner</h3>
-											</a>
-											<div class="related-course-footer">
-												<i class="fa fa-users"></i> <span>255</span>
-												<i class="fa fa-heart"></i> <span>50</span>
-												<strong>Free</strong>
-											</div>
-										</div>									
-									</div>							
-								</div>					
-								<div class="col-md-3">						
-									<div class="edufair-related-course">						
-										<div class="edufair-related-course-overlay">
-										  <img src="images/online-course/online-course3.jpg" alt="Avatar" class="edufair-related-course-image">
-										  <div class="edufair-related-course-middle">
-											 
-										  </div>
-										</div>
-										
-										<div class="related-course-content">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member2.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Teacher Name</h4>
-													<span>Head of the Department</span>
-												</a>
-											  </div>
-											</div>	
-											<a href="#" class="">
-												<h3>Oracle Architecture Course Administration Maintainance</h3>
-											</a>
-											<div class="related-course-footer">
-												<i class="fa fa-users"></i> <span>255</span>
-												<i class="fa fa-heart"></i> <span>50</span>
-												<strong>Free</strong>
-											</div>
-										</div>									
-									</div>							
-								</div>					
-								<div class="col-md-3">						
-									<div class="edufair-related-course">						
-										<div class="edufair-related-course-overlay">
-										  <img src="images/online-course/online-course4.jpg" alt="Avatar" class="edufair-related-course-image">
-										  <div class="edufair-related-course-middle">
-											 
-										  </div>
-										</div>
-										
-										<div class="related-course-content">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member3.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Teacher Name</h4>
-													<span>Head of the Department</span>
-												</a>
-											  </div>
-											</div>	
-											<a href="#" class="">
-												<h3>The Complete Guide to Getting Certified</h3>
-											</a>
-											<div class="related-course-footer">
-												<i class="fa fa-users"></i> <span>255</span>
-												<i class="fa fa-heart"></i> <span>50</span>
-												<strong>Free</strong>
-											</div>
-										</div>									
-									</div>							
-								</div>					
-								<div class="col-md-3">						
-									<div class="edufair-related-course">						
-										<div class="edufair-related-course-overlay">
-										  <img src="images/online-course/online-course5.jpg" alt="Avatar" class="edufair-related-course-image">
-										  <div class="edufair-related-course-middle">
-											 
-										  </div>
-										</div>
-										
-										<div class="related-course-content">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member3.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Teacher Name</h4>
-													<span>Head of the Department</span>
-												</a>
-											  </div>
-											</div>	
-											<a href="#" class="">
-												<h3>Computer Network Cabling: Ethernet Wiring</h3>
-											</a>
-											<div class="related-course-footer">
-												<i class="fa fa-users"></i> <span>255</span>
-												<i class="fa fa-heart"></i> <span>50</span>
-												<strong>Free</strong>
-											</div>
-										</div>									
-									</div>							
-								</div>							
-									
-							</div>
-						</div>
-						
-						<div class="item">
-							<div class="row">					
-								<div class="col-md-3">						
-									<div class="edufair-related-course">						
-										<div class="edufair-related-course-overlay">
-										  <img src="images/online-course/online-course6.jpg" alt="Avatar" class="edufair-related-course-image">
-										  <div class="edufair-related-course-middle">
-											 
-										  </div>
-										</div>
-										
-										<div class="related-course-content">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member5.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Teacher Name</h4>
-													<span>Head of the Department</span>
-												</a>
-											  </div>
-											</div>	
-											<a href="#" class="">
-												<h3>Salesforce Visual Workflow Complete course</h3>
-											</a>
-											<div class="related-course-footer">
-												<i class="fa fa-users"></i> <span>255</span>
-												<i class="fa fa-heart"></i> <span>50</span>
-												<strong>Free</strong>
-											</div>
-										</div>									
-									</div>							
-								</div>					
-								<div class="col-md-3">						
-									<div class="edufair-related-course">						
-										<div class="edufair-related-course-overlay">
-										  <img src="images/online-course/online-course7.jpg" alt="Avatar" class="edufair-related-course-image">
-										  <div class="edufair-related-course-middle">
-											 
-										  </div>
-										</div>
-										
-										<div class="related-course-content">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member6.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Teacher Name</h4>
-													<span>Head of the Department</span>
-												</a>
-											  </div>
-											</div>	
-											<a href="#" class="">
-												<h3>Cisco Packet Tracer Network Simulator</h3>
-											</a>
-											<div class="related-course-footer">
-												<i class="fa fa-users"></i> <span>255</span>
-												<i class="fa fa-heart"></i> <span>50</span>
-												<strong>Free</strong>
-											</div>
-										</div>									
-									</div>							
-								</div>					
-								<div class="col-md-3">						
-									<div class="edufair-related-course">						
-										<div class="edufair-related-course-overlay">
-										  <img src="images/online-course/online-course8.jpg" alt="Avatar" class="edufair-related-course-image">
-										  <div class="edufair-related-course-middle">
-											 
-										  </div>
-										</div>
-										
-										<div class="related-course-content">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member7.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Teacher Name</h4>
-													<span>Head of the Department</span>
-												</a>
-											  </div>
-											</div>	
-											<a href="#" class="">
-												<h3>System Center Configuration Manager</h3>
-											</a>
-											<div class="related-course-footer">
-												<i class="fa fa-users"></i> <span>255</span>
-												<i class="fa fa-heart"></i> <span>50</span>
-												<strong>Free</strong>
-											</div>
-										</div>									
-									</div>							
-								</div>					
-								<div class="col-md-3">						
-									<div class="edufair-related-course">						
-										<div class="edufair-related-course-overlay">
-										  <img src="images/online-course/online-course9.jpg" alt="Avatar" class="edufair-related-course-image">
-										  <div class="edufair-related-course-middle">
-											 
-										  </div>
-										</div>
-										
-										<div class="related-course-content">
-											<div class="media">
-											  <div class="media-left">
-												<img src="images/online-course/member8.jpg" alt="Avatar">
-											  </div>
-											  <div class="media-body">
-												<a href="#" class="">
-													<h4 class="media-heading">Teacher Name</h4>
-													<span>Head of the Department</span>
-												</a>
-											  </div>
-											</div>	
-											<a href="#" class="">
-												<h3>AWS Certification Exam Preparation Workshop</h3>
-											</a>
-											<div class="related-course-footer">
-												<i class="fa fa-users"></i> <span>255</span>
-												<i class="fa fa-heart"></i> <span>50</span>
-												<strong>Free</strong>
-											</div>
-										</div>									
-									</div>							
-								</div>							
-									
-							</div>
-						</div>											
-																
-					</div>				
-					
-				</div>		
-			</div>
-		</div>
-		End edufair related course		 -->
+	</div>
+	</body>
+	
+		
 
 			<%@ include file="../include/footer.jspf" %>

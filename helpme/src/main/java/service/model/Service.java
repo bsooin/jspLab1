@@ -30,8 +30,15 @@ public class Service {
 		return sNo;
 	}
 
-	public void setSNo(Integer SNo) {
-		this.sNo = SNo;
+	public void setSNo(Integer sNo) {
+		this.sNo = sNo;
+	}
+	public Integer getsNo() {
+		return sNo;
+	}
+
+	public void setsNo(Integer sNo) {
+		this.sNo = sNo;
 	}
 
 

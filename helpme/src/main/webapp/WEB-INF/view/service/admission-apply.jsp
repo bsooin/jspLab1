@@ -331,13 +331,13 @@
 							<th>* 재능 제목</th>
 							<td><input type="text" name="sName" style="width: 80%;"
 								value="" maxlength="30"
-								placeholder="예) 나만의 재능"><span>(30자 이내)</span></td>
+								placeholder="예) 나만의 재능" required><span>(30자 이내)</span></td>
 						</tr>
 						<tr>
 							<th>* 재능가격</th>
 							<td><input type="text" name="price"
 								style="width: 80px; text-align: right;"value=""
-								maxlength="7" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');">원</td>
+								maxlength="7" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');" required>원</td>
 						</tr>
 
 						
@@ -352,7 +352,7 @@
 							<th>* 재능상세내용</th>
 							<td><input type="text" name="sCon"
 									style="width: 97%; height: 400px;"
-									placeholder="본인의 재능을 최대한 자세하게 설명합니다. 명료하고 신뢰할 수 있는 문구로 작성해 주시고 구매자가 설명만 읽고 어떤 재능인지 쉽게 파악할 수 있도록 작성하는 것이 중요합니다."></td>
+									placeholder="본인의 재능을 최대한 자세하게 설명합니다. 명료하고 신뢰할 수 있는 문구로 작성해 주시고 구매자가 설명만 읽고 어떤 재능인지 쉽게 파악할 수 있도록 작성하는 것이 중요합니다." required></td>
 						</tr>
 					
 					</tbody>
@@ -365,7 +365,6 @@
 			</form>
 
 		</div>
-
 
 
 

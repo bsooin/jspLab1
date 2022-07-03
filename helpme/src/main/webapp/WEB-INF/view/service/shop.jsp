@@ -320,21 +320,27 @@
 					</div>
 
 					<div class="row padding-top-middle">
-					
 					<c:forEach var="service" items="${servicePage.content}">
 						<div class="col-md-3">
 							<div class="edufair-shop-container">
-							 <a href="read.do?no=${service.getSNo()}&pageNo=${servicePage.currentPage}">
-							 <img src="/helpme/upload/${service.pImage}" class="edufair-shop-image"></a>
+							 <a href="read.do?sNo=${service.getSNo()}">
+							 <c:if test="${service.pImage==null}">
+							 <img src="/helpme/upload/basic.jpg" class="edufair-shop-image">
+							 </c:if>
+							  <c:if test="${service.pImage!=null}">
+							  <img src="/helpme/upload/${service.pImage}" class="edufair-shop-image">
+							  </c:if>
+							 </a>
+							 
 							</div>
 							<div class="edufair-shop-item-text">
-								<a href="read.do?no=${service.getSNo()}&pageNo=${servicePage.currentPage}">${service.getSName()}</a>
+								<a href="read.do?sNo=${service.getSNo()}">${service.getSName()}</a>
 								<p>${service.categoryNo}</p>
 								<b>${service.price}원</b>
 							</div>
 						</div>
 					</c:forEach>
-
+					
 					</div>
 
 
@@ -371,7 +377,7 @@
 		</div>
 		<!-- End Shop -->		
 		<p style="text-align:center">
-		<a href="service/write.do"style="font-size:10px;background:white;color:black">서비스 작성</a>
+		<a href="write.do"style="font-size:10px;background:white;color:black">서비스 작성</a>
 		</p>
 	
 	<%@ include file="../include/footer.jspf" %>

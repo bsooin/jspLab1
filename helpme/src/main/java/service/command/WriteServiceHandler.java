@@ -47,7 +47,7 @@ public class WriteServiceHandler implements CommandHandler {
 		String sName,sCon,pImage;
 		
 		Service service = null;
-		Writer writer = new Writer(user.getId(),user.getName());
+		Writer writer = new Writer("d","d");
 		try {
 			
 		MultipartRequest multi = new MultipartRequest(req, uploadPath, size, "utf-8",
@@ -59,34 +59,19 @@ public class WriteServiceHandler implements CommandHandler {
 		price = Integer.parseInt(multi.getParameter("price"));
 		sCon = multi.getParameter("sCon");
 		pImage = multi.getFilesystemName("pImage");
-
+		
+		
 		service = new Service(0,sName,categoryNo,price,sCon,0,0,pImage,writer);
 		
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		int newArticleNo = writeService.write(service);
-		req.setAttribute("newArticleNo", newArticleNo);
+		writeService.write(service);
 		
 		return "/WEB-INF/view/service/newServiceSuccess.jsp";
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

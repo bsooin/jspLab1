@@ -15,7 +15,7 @@ import jdbc.JdbcUtil;
 
 public class ServiceDao {
 
-	public Service insert(Connection conn, Service service) throws SQLException {
+	public int insert(Connection conn, Service service) throws SQLException {
 		PreparedStatement pstmt = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -29,16 +29,7 @@ public class ServiceDao {
 			pstmt.setString(5, service.getpImage());
 			int insertedCount = pstmt.executeUpdate();
 
-			if (insertedCount > 0) {
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery("select last_insert_sno() from svc");
-				if (rs.next()) {
-					Integer newNo = rs.getInt(1);
-					return new Service(newNo, service.getSName(), service.getCategoryNo(), service.getPrice(),
-							service.getsCon(), service.getLikeIt(), 0, service.getpImage(), service.getWriter());
-				}
-			}
-			return null;
+			return insertedCount;
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(stmt);
@@ -66,7 +57,7 @@ public class ServiceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from svc WHERE ROWNUM BETWEEN ? AND ?");
+			pstmt = conn.prepareStatement("select * from (SELECT ROWNUM AS NUM, svc.* FROM svc) WHERE num BETWEEN ? AND ? order by sno desc");
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -97,7 +88,7 @@ public class ServiceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from svc where svc_sno = ?");
+			pstmt = conn.prepareStatement("select * from svc where sno = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			Service service = null;
@@ -113,7 +104,7 @@ public class ServiceDao {
 
 	public void increaseViewcount(Connection conn, int no) throws SQLException {
 		try (PreparedStatement pstmt = conn
-				.prepareStatement("update svc set viewcount = viewcount + 1 " + "where svc_sno = ?")) {
+				.prepareStatement("update svc set viewcount = viewcount + 1 " + "where sno = ?")) {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
 		}
@@ -121,7 +112,7 @@ public class ServiceDao {
 
 	public int update(Connection conn, ModifyServiceRequest modReq) throws SQLException {
 		try (PreparedStatement pstmt = conn
-				.prepareStatement("update svc set sname = ?, categoryno = ?, price = ?, scon = ?, pimage = ?" + "where svc_sno = ?")) {
+				.prepareStatement("update svc set sname = ?, categoryno = ?, price = ?, scon = ?, pimage = ?" + "where sno = ?")) {
 			pstmt.setString(1, modReq.getsName());
 			pstmt.setInt(2, modReq.getCategoryNo());
 			pstmt.setInt(3, modReq.getPrice());
@@ -133,7 +124,7 @@ public class ServiceDao {
 	}
 
 	public int delete(Connection conn, int no) throws SQLException {
-		try (PreparedStatement pstmt = conn.prepareStatement("delete from svc where svc_sno = ?")) {
+		try (PreparedStatement pstmt = conn.prepareStatement("delete from svc where sno = ?")) {
 			pstmt.setInt(1, no);
 			return pstmt.executeUpdate();
 		}

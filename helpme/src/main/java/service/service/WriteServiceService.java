@@ -12,20 +12,19 @@ public class WriteServiceService {
 
 	private ServiceDao serviceDao = new ServiceDao();
 
-	public Integer write(Service service) {
+	public void write(Service service) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 
-			Service savedService = serviceDao.insert(conn, service);
-			if (savedService == null) {
+			int check = serviceDao.insert(conn, service);
+			if (check == 0) {
 				throw new RuntimeException("fail to insert article");
 			}
 
 			conn.commit();
 
-			return savedService.getSNo();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);
 			throw new RuntimeException(e);
