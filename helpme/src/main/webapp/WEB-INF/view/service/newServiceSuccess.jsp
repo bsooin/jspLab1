@@ -2,5 +2,5 @@
 
 <script>
 	alert("성공적으로 등록 되었습니다.");
-	location.href="${pageContext.request.contextPath}/service/list.do"; 
+	location.href="${pageContext.request.contextPath}/service/list.do?orderType=lastest"; 
 </script>

@@ -13,12 +13,13 @@ public class ListServiceService {
 	private ServiceDao articleDao = new ServiceDao();
 	private int size = 8;
 
-	public ServicePage getServicePage(int pageNum) {
+	public ServicePage getServicePage(int pageNum,String orderType) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			int total = articleDao.selectCount(conn);
 			
 			List<Service> content = articleDao.select(
-					conn, (pageNum - 1) * size, (pageNum - 1) * size+size);
+					conn, (pageNum - 1) * size, (pageNum - 1) * size+size,orderType);
+			
 			return new ServicePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

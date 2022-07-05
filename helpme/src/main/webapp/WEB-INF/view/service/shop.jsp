@@ -295,7 +295,12 @@
 			</div>
 		</div>
 
+		<script>
+		function serviceListOrder(orderType){
+			location.href = "${pageContext.request.contextPath}/service/list.do?orderType="+orderType;
+		}
 		
+		</script>
 		<!-- Start shop -->
 		<div class="container wow fadeIn"> <!-- Start Container -->
 			<div class="row">
@@ -306,11 +311,11 @@
 							<div class="col-md-3 shop-category">
 							  <form>
 								<div class="form-group">						      
-							      <select class="form-control" id="sel1">
-							        <option>Short by popularity</option>
-							        <option>Short by avarage rating</option>
-							        <option>Short by price</option>
-							        <option>Short by latest product</option>
+							      <select class="form-control" id="sel1" onchange="serviceListOrder(this.value)">
+							      <option value="lastest" <c:if test="${orderType eq 'lastest'}">selected</c:if>>등록순</option>
+							        <option value="sCount" <c:if test="${orderType eq 'sCount'}">selected</c:if>>판매순</option>
+							        <option value="viewCount" <c:if test="${orderType eq 'viewCount'}">selected</c:if>>조회순</option>
+							        <option value="price" <c:if test="${orderType eq 'price'}">selected</c:if>>가격순</option>
 							      </select>
 
 							    </div>
@@ -331,7 +336,6 @@
 							  <img src="/helpme/upload/${service.pImage}" class="edufair-shop-image">
 							  </c:if>
 							 </a>
-							 
 							</div>
 							<div class="edufair-shop-item-text">
 								<a href="read.do?sNo=${service.getSNo()}">${service.getSName()}</a>
@@ -376,10 +380,11 @@
 			</div>
 		</div>
 		<!-- End Shop -->		
+		<c:if test="${not empty member.id}">
 		<p style="text-align:center">
-		<a href="write.do"style="font-size:10px;background:white;color:black">서비스 작성</a>
+		<a href="write.do"style="font-size:10px;background:white;color:black">서비스 등록</a>
 		</p>
-	
+	</c:if>
 	<%@ include file="../include/footer.jspf" %>
 	
 	

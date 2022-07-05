@@ -21,12 +21,13 @@ public class ServiceDao {
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement("insert into svc "
-					+ "(sno, sname, categoryNo, price, sCon, likeit, viewcount,pImage,scount) " + "values (svc_seq.nextval,?,?,?,?,0,0,?,0)");
+					+ "(sno, sname, categoryNo, price, sCon, likeit, viewcount,pImage,scount,userId) " + "values (svc_seq.nextval,?,?,?,?,0,0,?,0,?)");
 			pstmt.setString(1, service.getSName());
 			pstmt.setInt(2, service.getCategoryNo());
 			pstmt.setInt(3, service.getPrice());
 			pstmt.setString(4, service.getsCon());
 			pstmt.setString(5, service.getpImage());
+			pstmt.setString(6, service.getWriter().getId());
 			int insertedCount = pstmt.executeUpdate();
 
 			return insertedCount;
@@ -53,11 +54,19 @@ public class ServiceDao {
 		}
 	}
 
-	public List<Service> select(Connection conn, int startRow, int size) throws SQLException {
+	public List<Service> select(Connection conn, int startRow, int size, String orderType) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
+			if(orderType.equals("lastest")) {
 			pstmt = conn.prepareStatement("select * from (SELECT ROWNUM AS NUM, svc.* FROM svc) WHERE num BETWEEN ? AND ? order by sno desc");
+			}else if(orderType.equals("sCount")) {
+				pstmt = conn.prepareStatement("select * from (SELECT ROWNUM AS NUM, svc.* FROM svc) WHERE num BETWEEN ? AND ? order by sCount desc");
+			}else if(orderType.equals("viewCount")) {
+				pstmt = conn.prepareStatement("select * from (SELECT ROWNUM AS NUM, svc.* FROM svc) WHERE num BETWEEN ? AND ? order by viewCount desc");
+			}else if(orderType.equals("price")) {
+				pstmt = conn.prepareStatement("select * from (SELECT ROWNUM AS NUM, svc.* FROM svc) WHERE num BETWEEN ? AND ? order by price asc");
+			}
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -81,7 +90,7 @@ public class ServiceDao {
 				rs.getInt("likeit"),
 				rs.getInt("viewcount"),
 				rs.getString("pImage"),
-				new Writer("a","a"));
+				new Writer(rs.getString("userId"),"a"));
 		
 	}
 
@@ -129,5 +138,6 @@ public class ServiceDao {
 			pstmt.setInt(1, no);
 			return pstmt.executeUpdate();
 		}
+		
 	}
 }

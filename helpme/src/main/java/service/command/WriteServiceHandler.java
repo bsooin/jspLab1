@@ -47,7 +47,7 @@ public class WriteServiceHandler implements CommandHandler {
 		String sName,sCon,pImage;
 		
 		Service service = null;
-		Writer writer = new Writer("d","d");
+		Writer writer = new Writer("a","a");
 		try {
 			
 		MultipartRequest multi = new MultipartRequest(req, uploadPath, size, "utf-8",

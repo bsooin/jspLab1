@@ -271,15 +271,15 @@
 									<strong>${serviceData.service.price}</strong>
 								</div>								
 							</div>
-							
+								<c:if test="${member.getId()!=null}">
 								<input type="button" value="서비스 구매" style="background-color:white;width:100%;height:30px;border-color:green;font-size:15px;margin-bottom:20px"
-								onclick="">
+								onclick="checkPurchase();">
+								</c:if>
 								<script>
 								function checkPurchase(){
 									var chk = confirm('구매 신청하시겠습니까?');
 									if(chk){
-										location.href='service/buy.do?sNo=${serviceData.service.getsNo()}&price=${serviceData.service.price}';
-										alert('신청 완료');
+										location.href='buy.do?sNo=${serviceData.service.getsNo()}';
 									}else{
 										
 									}
@@ -370,10 +370,19 @@
 												<p></p><h2>${review.rTitle}</h2></p>
 												<p>${review.rContent}</p>
 												
+												<script>
+												function checkRDel(){
+													if(confirm("정말 삭제하시겠습니까?")){
+														location.replace('review/delete.do?rBoardId=${review.rBoardId}');
+														}
+													}
+												</script>
+												
 												<c:if test="${member.id == review.writer.id}">
 													<p style="text-align:right">
-														<a href="review/modify.do?no=${review.rBoardId}"style="font-size:10px;background:white;color:black">리뷰 수정</a>
-														<a href="review/delete.do?no=${review.rBoardId}"style="font-size:10px;background:white;color:black">리뷰 삭제</a>
+														
+														<button type="button" onclick="location.replace('review/modify.do?rBoardId=${review.rBoardId}')" style="font-size:10px;background:white;color:black">리뷰 수정</button>
+															<button type="button" onclick="checkRDel();" style="font-size:10px;background:white;color:black">리뷰 삭제</button>
 													</p>
 												</c:if>
 											</div>
@@ -427,13 +436,10 @@
 						<div class="all-course">
 							<h2>Course Features</h2>
 							<ul>
-								<li><i class="fa fa-cube"></i> Lectures <span> 16 </span></li>
-								<li><i class="fa fa-puzzle-piece"></i> Quizzes <span> 5 </span></li>
-								<li><i class="fa fa-clock-o"></i> Duration <span> 3 hours </span></li>
-								<li><i class="fa fa-level-up"></i> Skill level <span> All level </span></li>
-								<li><i class="fa fa-language"></i> Language <span> English </span></li>
-								<li><i class="fa fa-users"></i> Students <span> 250 </span></li>
-								<li><i class="fa fa-check-square-o"></i> Assessments <span> Self </span></li>													
+								<li><i class="fa fa-cube"></i> 조회수 <span> ${serviceData.getService().getViewCount() } </span></li>
+								<li><i class="fa fa-level-up"></i> 좋아요 <span> ${serviceData.getService().getLikeIt()} </span></li>
+								<li><i class="fa fa-users"></i> 판매 횟수 <span> 1 </span></li>
+																					
 							</ul>
 						</div>						
 					</div>
