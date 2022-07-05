@@ -18,10 +18,7 @@ public class WriteServiceService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 
-			int check = serviceDao.insert(conn, service);
-			if (check == 0) {
-				throw new RuntimeException("fail to insert article");
-			}
+			serviceDao.insert(conn, service);
 
 			conn.commit();
 

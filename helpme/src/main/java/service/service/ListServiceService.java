@@ -18,7 +18,7 @@ public class ListServiceService {
 			int total = articleDao.selectCount(conn);
 			
 			List<Service> content = articleDao.select(
-					conn, (pageNum - 1) * size, (pageNum - 1) * size+size,orderType,cat);
+					conn, (pageNum - 1) * size+1, (pageNum - 1) * size+size,orderType,cat);
 			
 			return new ServicePage(total, pageNum, size, content);
 		} catch (SQLException e) {

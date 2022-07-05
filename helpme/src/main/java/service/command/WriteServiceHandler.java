@@ -37,7 +37,7 @@ public class WriteServiceHandler implements CommandHandler {
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 
-		User user = (User)req.getSession(false).getAttribute("member");
+//		User user = (User)req.getSession(false).getAttribute("member");
 		
 		String uploadPath = req.getRealPath("upload");
 		
@@ -61,7 +61,7 @@ public class WriteServiceHandler implements CommandHandler {
 		pImage = multi.getFilesystemName("pImage");
 		
 		
-		service = new Service(0,sName,categoryNo,price,sCon,0,0,pImage,writer);
+		service = new Service(0,sName,categoryNo,price,sCon,0,0,pImage,writer,0);
 		
 		}catch (Exception e) {
 			e.printStackTrace();

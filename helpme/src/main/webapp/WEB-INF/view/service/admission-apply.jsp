@@ -277,10 +277,10 @@
 							class="carousel-caption edufair-caption edufair-single-caption">
 							<div class="edufair-slider-middle">
 								<div class="container edufair-slider-text">
-									<h2 class="fadeInLeft">Admission</h2>
+									<h2 class="fadeInLeft"></h2>
 									<ol class="breadcrumb edufair-single-breadcrumbs">
 										<li><a href="#">Home</a></li>
-										<li><a href="#">Admission</a></li>
+										<li><a href="#">update service</a></li>
 									</ol>
 								</div>
 							</div>

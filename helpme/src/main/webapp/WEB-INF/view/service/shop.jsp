@@ -233,7 +233,7 @@
 							<div class="carousel-caption edufair-caption edufair-single-caption">
 								<div class="edufair-slider-middle">
 									<div class="container edufair-slider-text">
-										<h2 class="fadeInLeft">Our Products</h2>	
+										<h2 class="fadeInLeft">재능 거래 서비스</h2>	
 										<ol class="breadcrumb edufair-single-breadcrumbs">
 										  <li><a href="#">Home</a></li>
 										  <li><a href="#">Shop</a></li>										 
@@ -312,10 +312,11 @@
 							  <form>
 								<div class="form-group">						      
 							      <select class="form-control" id="sel1" onchange="serviceListOrder(this.value)">
-							      <option value="lastest" <c:if test="${orderType eq 'lastest'}">selected</c:if>>등록순</option>
+							      <option value="lastest" <c:if test="${orderType eq 'lastest'}">selected</c:if>>최신순</option>
 							        <option value="sCount" <c:if test="${orderType eq 'sCount'}">selected</c:if>>판매순</option>
 							        <option value="viewCount" <c:if test="${orderType eq 'viewCount'}">selected</c:if>>조회순</option>
 							        <option value="price" <c:if test="${orderType eq 'price'}">selected</c:if>>가격순</option>
+							        <option value="likeIt" <c:if test="${orderType eq 'likeIt'}">selected</c:if>>좋아요순</option>
 							      </select>
 
 							    </div>
@@ -327,18 +328,18 @@
 					<div class="row padding-top-middle">
 					<c:forEach var="service" items="${servicePage.content}">
 						<div class="col-md-3">
-							<div class="edufair-shop-container">
-							 <a href="read.do?sNo=${service.getSNo()}">
+							<div class="edufair-shop-container" style="width:220px;height:150px">
+							 <a href="read.do?sNo=${service.getSNo()}&likeIt=0">
 							 <c:if test="${service.pImage==null}">
 							 <img src="/helpme/upload/basic.jpg" class="edufair-shop-image">
 							 </c:if>
 							  <c:if test="${service.pImage!=null}">
-							  <img src="/helpme/upload/${service.pImage}" class="edufair-shop-image">
+							  <img src="/helpme/upload/${service.pImage}" class="edufair-shop-image" >
 							  </c:if>
 							 </a>
 							</div>
 							<div class="edufair-shop-item-text">
-								<a href="read.do?sNo=${service.getSNo()}">${service.getSName()}</a>
+								<a href="read.do?sNo=${service.getSNo()}&likeIt=0">${service.getSName()}</a>
 <%-- 								<p>${service.categoryNo}</p> --%>
 								<p>${service.price}원</p>
 							</div>
@@ -356,17 +357,17 @@
 								  <c:if test="${servicePage.hasServices()}">
 	<ul class="pagination edufair-pagination">
 			<c:if test="${servicePage.startPage > 5}">
-			<li><a href="list.do?pageNo=${servicePage.startPage - 5}" class="fa fa-angle-left">[이전]</a></li>
+			<li><a href="list.do?pageNo=${servicePage.startPage - 5}&orderType=${orderType}&cat=${cat}" class="fa fa-angle-left">[이전]</a></li>
 			</c:if>
 			
 			<c:forEach var="pNo" 
 					   begin="${servicePage.startPage}" 
 					   end="${servicePage.endPage}">
-			<li><a href="list.do?pageNo=${pNo}">[${pNo}]</a></li>
+			<li><a href="list.do?pageNo=${pNo}&orderType=${orderType}&cat=${cat}">[${pNo}]</a></li>
 			</c:forEach>
 			
 			<c:if test="${servicePage.endPage < servicePage.totalPages}">
-			<li><a href="list.do?pageNo=${servicePage.startPage + 5}" class="fa fa-angle-right" >[다음]</a></li>
+			<li><a href="list.do?pageNo=${servicePage.startPage + 5}&orderType=${orderType}&cat=${cat}" class="fa fa-angle-right" >[다음]</a></li>
 			</c:if>
 	</ul>
 </c:if>

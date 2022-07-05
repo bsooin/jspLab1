@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import service.model.LikeIt;
 import service.model.Service;
 import service.model.Writer;
 import service.service.ModifyServiceRequest;
@@ -15,7 +16,7 @@ import jdbc.JdbcUtil;
 
 public class ServiceDao {
 
-	public int insert(Connection conn, Service service) throws SQLException {
+	public void insert(Connection conn, Service service) throws SQLException {
 		PreparedStatement pstmt = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -28,9 +29,8 @@ public class ServiceDao {
 			pstmt.setString(4, service.getsCon());
 			pstmt.setString(5, service.getpImage());
 			pstmt.setString(6, service.getWriter().getId());
-			int insertedCount = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 
-			return insertedCount;
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(stmt);
@@ -59,13 +59,15 @@ public class ServiceDao {
 		ResultSet rs = null;
 		try {
 			if(orderType.equals("lastest")) {
-			pstmt = conn.prepareStatement("select * from (SELECT ROWNUM AS NUM, svc.* FROM svc) WHERE num BETWEEN ? AND ? order by sno desc");
+			pstmt = conn.prepareStatement("select d.* from(select row_number() over(order by sno desc) rnum, s.* from svc s) d where d.rnum between ? and ?");
 			}else if(orderType.equals("sCount")) {
-				pstmt = conn.prepareStatement("select * from (SELECT ROWNUM AS NUM, svc.* FROM svc) WHERE num BETWEEN ? AND ? order by sCount desc");
+				pstmt = conn.prepareStatement("select d.* from(select row_number() over(order by scount desc) rnum, s.* from svc s) d where d.rnum between ? and ?");
 			}else if(orderType.equals("viewCount")) {
-				pstmt = conn.prepareStatement("select * from (SELECT ROWNUM AS NUM, svc.* FROM svc) WHERE num BETWEEN ? AND ? order by viewCount desc");
+				pstmt = conn.prepareStatement("select d.* from(select row_number() over(order by viewcount desc) rnum, s.* from svc s) d where d.rnum between ? and ?");
 			}else if(orderType.equals("price")) {
-				pstmt = conn.prepareStatement("select * from (SELECT ROWNUM AS NUM, svc.* FROM svc) WHERE num BETWEEN ? AND ? order by price asc");
+				pstmt = conn.prepareStatement("select d.* from(select row_number() over(order by price asc) rnum, s.* from svc s) d where d.rnum between ? and ?");
+			}else if(orderType.equals("likeIt")) {
+				pstmt = conn.prepareStatement("select d.* from(select row_number() over(order by likeit asc) rnum, s.* from svc s) d where d.rnum between ? and ?");
 			}
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
@@ -99,7 +101,8 @@ public class ServiceDao {
 				rs.getInt("likeit"),
 				rs.getInt("viewcount"),
 				rs.getString("pImage"),
-				new Writer(rs.getString("userId"),"a"));
+				new Writer(rs.getString("userId"),"a"),
+				rs.getInt("sCount"));
 		
 	}
 
@@ -128,6 +131,54 @@ public class ServiceDao {
 			pstmt.executeUpdate();
 		}
 	}
+	
+	public void increaseLikeIt(Connection conn, int serviceNum, String userId) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("select * from likeIt where sno = ? and userid = ?" );
+			pstmt.setInt(1, serviceNum);
+			pstmt.setString(2, userId);
+			rs = pstmt.executeQuery();
+			
+			if(!rs.next()) {
+				increaseLike(conn,serviceNum);
+				insertLikeIt(conn,serviceNum,userId);
+			}
+			
+			
+			
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public void increaseLike(Connection conn, int no) throws SQLException {
+		try (PreparedStatement pstmt = conn
+				.prepareStatement("update svc set likeit = likeit + 1 " + "where sno = ?")) {
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}
+	}
+	public void insertLikeIt(Connection conn, int serviceNum, String userId) throws SQLException {
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("insert into likeit "
+					+ "(sno,userid) " + "values (?,?)");
+			pstmt.setInt(1, serviceNum);
+			pstmt.setString(2, userId);
+			pstmt.executeUpdate();
+
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
 
 	public int update(Connection conn, ModifyServiceRequest modReq) throws SQLException {
 		try (PreparedStatement pstmt = conn

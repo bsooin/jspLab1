@@ -237,9 +237,7 @@
 									<div class="container edufair-slider-text">
 										<h2 class="fadeInLeft"></h2>	
 										<ol class="breadcrumb edufair-single-breadcrumbs">
-										  <li><a href="#">Home</a></li>
-										  <li><a href="#">HTML</a></li>
-										  <li class="active">Guide to Getting Certified</li>
+										  
 										</ol>										
 									</div>
 								</div>
@@ -364,11 +362,12 @@
 											<div class="instructors-tab">
 												<div class="media">
 												  <div class="media-body">
-														<h4 class="media-heading">${review.writer.id}</h4>													
+														<h4 class="media-heading">작성자 : ${review.writer.id}</h4>													
 												  </div>
 												</div>
-												<p></p><h2>${review.rTitle}</h2></p>
-												<p>${review.rContent}</p>
+												<p></p>
+												<h2>리뷰 제목 : ${review.rTitle}</h2><p><b>${review.rating}점</b></p>
+												<p>리뷰 내용 : ${review.rContent}</p>
 												
 												<script>
 												function checkRDel(){
@@ -395,17 +394,17 @@
 								  <c:if test="${reviewPage.hasReviews()}">
 	<ul class="pagination edufair-pagination">
 			<c:if test="${reviewPage.startPage > 5}">
-			<li><a href="list.do?pageNo=${reviewPage.startPage - 5}" class="fa fa-angle-left">[이전]</a></li>
+			<li><a href="read.do?sNo=${serviceData.service.sNo}&likeIt=0&RPageNo=${reviewPage.starPage-5}" class="fa fa-angle-left">[이전]</a></li>
 			</c:if>
 			
 			<c:forEach var="pNo" 
 					   begin="${reviewPage.startPage}" 
 					   end="${reviewPage.endPage}">
-			<li><a href="list.do?pageNo=${pNo}">[${pNo}]</a></li>
+			<li><a href="read.do?sNo=${serviceData.service.sNo}&likeIt=0&RPageNo=${pNo}">[${pNo}]</a></li>
 			</c:forEach>
 			
 			<c:if test="${reviewPage.endPage < reviewPage.totalPages}">
-			<li><a href="list.do?pageNo=${reviewPage.startPage + 5}" class="fa fa-angle-right" >[다음]</a></li>
+			<li><a href="read.do?sNo=${serviceData.service.sNo}&likeIt=0&RPageNo=${reviewPage.starPage+5}" class="fa fa-angle-right" >[다음]</a></li>
 			</c:if>
 	</ul>
 </c:if>
@@ -434,12 +433,12 @@
 					
 					<div class="col-md-3 sticky-sidebar">						
 						<div class="all-course">
-							<h2>Course Features</h2>
+							<h2>기타</h2>
 							<ul>
 								<li><i class="fa fa-cube"></i> 조회수 <span> ${serviceData.getService().getViewCount() } </span></li>
-								<li><i class="fa fa-level-up"></i> 좋아요 <span> ${serviceData.getService().getLikeIt()} </span></li>
-								<li><i class="fa fa-users"></i> 판매 횟수 <span> 1 </span></li>
-								<li><i class="fa fa-comments"></i> 카테고리 <span> 1 </span></li>
+								<li><a href="read.do?sNo=${serviceData.getService().getSNo()}&likeIt=1" ><i class="fa fa-level-up"></i></a>
+								좋아요(화살표 클릭) <span> ${serviceData.getService().getLikeIt()} </span></li>
+								<li><i class="fa fa-users"></i> 판매 횟수 <span> ${serviceData.getService().getsCount()} </span></li>
 																					
 							</ul>
 						</div>						
