@@ -263,7 +263,7 @@
 								<div class="col-md-4 course-teacher-details">
 									<div class="media">
 									  <div class="media-body">	
-											Teacher Name
+											<span style="font-size:20px">${serviceData.service.getSName()}</span>
 									  </div>
 									</div>
 								</div>			
@@ -439,6 +439,7 @@
 								<li><i class="fa fa-cube"></i> 조회수 <span> ${serviceData.getService().getViewCount() } </span></li>
 								<li><i class="fa fa-level-up"></i> 좋아요 <span> ${serviceData.getService().getLikeIt()} </span></li>
 								<li><i class="fa fa-users"></i> 판매 횟수 <span> 1 </span></li>
+								<li><i class="fa fa-comments"></i> 카테고리 <span> 1 </span></li>
 																					
 							</ul>
 						</div>						

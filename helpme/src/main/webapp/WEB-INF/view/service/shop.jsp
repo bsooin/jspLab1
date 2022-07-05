@@ -257,37 +257,37 @@
 						<div class="col-md-2">
 							<div class="single-kindergarten-features single-kindergarten-features-1x">
 								<img src="images/kindergarten/icon1.png" alt="" />
-								<h4><a href="#">Science Lab</a></h4>								
+								<h4><a href="${pageContext.request.contextPath}/service/list.do?orderType=${orderType}&cat=1">카테고리 1</a></h4>								
 							</div>
 						</div>
 						<div class="col-md-2">
 							<div class="single-kindergarten-features single-kindergarten-features-2x">
 								<img src="images/kindergarten/icon2.png" alt="" />
-								<h4><a href="#">Funny</a></h4>								
+								<h4><a href="${pageContext.request.contextPath}/service/list.do?orderType=${orderType}&cat=2">카테고리 2</a></h4>								
 							</div>
 						</div>
 						<div class="col-md-2">
 							<div class="single-kindergarten-features single-kindergarten-features-3x">
 								<img src="images/kindergarten/icon9.png" alt="" />
-								<h4><a href="#">Learn Music</a></h4>								
+								<h4><a href="${pageContext.request.contextPath}/service/list.do?orderType=${orderType}&cat=3">카테고리 3</a></h4>								
 							</div>
 						</div>
 						<div class="col-md-2">
 							<div class="single-kindergarten-features single-kindergarten-features-4x">
 								<img src="images/kindergarten/icon4.png" alt="" />
-								<h4><a href="#">Computer</a></h4>								
+								<h4><a href="${pageContext.request.contextPath}/service/list.do?orderType=${orderType}&cat=4">카테고리 4</a></h4>								
 							</div>
 						</div>							
 						<div class="col-md-2">
 							<div class="single-kindergarten-features single-kindergarten-features-5x">
 								<img src="images/kindergarten/icon7.png" alt="" />
-								<h4><a href="#">Web Design</a></h4>								
+								<h4><a href="${pageContext.request.contextPath}/service/list.do?orderType=${orderType}&cat=5">카테고리 5</a></h4>								
 							</div>
 						</div>	
 						<div class="col-md-2">
 							<div class="single-kindergarten-features single-kindergarten-features-6x">
 								<img src="images/kindergarten/icon8.png" alt="" />
-								<h4><a href="#">Photoshop</a></h4>								
+								<h4><a href="${pageContext.request.contextPath}/service/list.do?orderType=${orderType}&cat=6">카테고리 6</a></h4>								
 							</div>
 						</div>	
 					</div>
@@ -297,7 +297,7 @@
 
 		<script>
 		function serviceListOrder(orderType){
-			location.href = "${pageContext.request.contextPath}/service/list.do?orderType="+orderType;
+			location.href = "${pageContext.request.contextPath}/service/list.do?orderType="+orderType+"&cat=${cat}";
 		}
 		
 		</script>
@@ -339,8 +339,8 @@
 							</div>
 							<div class="edufair-shop-item-text">
 								<a href="read.do?sNo=${service.getSNo()}">${service.getSName()}</a>
-								<p>${service.categoryNo}</p>
-								<b>${service.price}원</b>
+<%-- 								<p>${service.categoryNo}</p> --%>
+								<p>${service.price}원</p>
 							</div>
 						</div>
 					</c:forEach>

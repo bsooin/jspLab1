@@ -313,17 +313,12 @@
 						<tr>
 							<th>* 카테고리</th>
 							<td><select name="categoryNo"style="width: 150px;">
-									<option value="0">선택</option>
-									<option value="1">디자인/그래픽</option>
-									<option value="2">바이럴/마케팅/광고</option>
-									<option value="3">문서/서식/레포트</option>
-									<option value="4">컴퓨터/개발</option>
-									<option value="5">음악/영상</option>
-									<option value="6">생활/대행/상담</option>
-									<option value="7">노하우/여행</option>
-									<option value="8">비즈니스/창업/사업</option>
-									<option value="9">번역/외국어</option>
-									<option value="10">선물/핸드메이드/DIY</option>
+									<option value="1">카테고리 1</option>
+									<option value="2">카테고리 2</option>
+									<option value="3">카테고리 3</option>
+									<option value="4">카테고리 4</option>
+									<option value="5">카테고리 5</option>
+									<option value="6">카테고리 6</option>
 							</select> 
 						
 						</tr>

@@ -54,7 +54,7 @@ public class ServiceDao {
 		}
 	}
 
-	public List<Service> select(Connection conn, int startRow, int size, String orderType) throws SQLException {
+	public List<Service> select(Connection conn, int startRow, int size, String orderType, int cat) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -73,6 +73,15 @@ public class ServiceDao {
 			List<Service> result = new ArrayList<>();
 			while (rs.next()) {
 				result.add(convertService(rs));
+			}
+			if(cat!=0) {
+				List<Service> rResult = new ArrayList<>();
+				for(Service s: result) {
+					if(s.getCategoryNo()==cat) {
+						rResult.add(s);
+					}
+				}
+				return rResult;
 			}
 			return result;
 		} finally {
