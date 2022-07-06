@@ -37,7 +37,7 @@ public class WriteServiceHandler implements CommandHandler {
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
 
-//		User user = (User)req.getSession(false).getAttribute("member");
+		User user = (User)req.getSession(false).getAttribute("member");
 		
 		String uploadPath = req.getRealPath("upload");
 		
@@ -47,7 +47,7 @@ public class WriteServiceHandler implements CommandHandler {
 		String sName,sCon,pImage;
 		
 		Service service = null;
-		Writer writer = new Writer("a","a");
+		Writer writer = new Writer(user.getId(),user.getName());
 		try {
 			
 		MultipartRequest multi = new MultipartRequest(req, uploadPath, size, "utf-8",

@@ -2,6 +2,7 @@ package service.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import auth.service.User;
 import mvc.command.CommandHandler;
@@ -15,8 +16,11 @@ public class ListServiceHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) 
 			throws Exception {
-//		User user = (User)req.getSession(false).getAttribute("member");
-		User user = new User("a","a");
+		User user = null;
+		if (req.getSession(false) != null) {
+		user = (User)req.getSession(false).getAttribute("member");
+		}
+//		User user = new User("a","a");
 		String orderType = req.getParameter("orderType");
 		String pageNoVal = req.getParameter("pageNo");
 		int cat = Integer.parseInt(req.getParameter("cat"));
